@@ -1,14 +1,19 @@
 import React from 'react';
 import { PDFViewer } from '@react-pdf/renderer';
 import { useState } from 'react';
+import Hero from './Hero';
 import Resume from './Resume';
+import Navbar from './Navbar';
+import Features from './Features';
 const App = () => {
   const [name, setUsername] = useState('Akhil Kompally');
   return (
     <>
+    <Navbar/>
+    <Hero/>
+    <Features/>
       <div className='flex h-screen'>
         <div class="flex-1 overflow-hidden flex items-center">
-          
           <input type="text" value={name} onChange={(e) => setUsername(e.target.value)} />
         </div>
         <div class="flex-1 flex items-center justify-center">
