@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Features from "./Features";
+import { Link } from "react-router-dom";
 const Hero = () => {
   return (
     <div>
@@ -23,8 +24,8 @@ const Hero = () => {
                 Create Your Resume
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" className="px-8 py-6 text-base">
-                Explore Templates
+              <Button asChild variant="outline" className="px-8 py-6 text-base">
+                <Link to="/template">Explore Templates</Link>
               </Button>
             </div>
           </div>

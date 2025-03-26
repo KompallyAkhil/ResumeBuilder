@@ -1,6 +1,6 @@
 const Template = () => {
     return (
-        <div>
+        <div >
         <h1>Template</h1>
         </div>
     );

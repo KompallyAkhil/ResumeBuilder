@@ -12,11 +12,8 @@ const App = () => {
   return (
     <>
     <Navbar/>
-
-     
       <Routes>
         <Route path="/" element={<Hero />} />
-        <Route path="/features" element={<Features />} />
         <Route path="/template" element={<Template />} />
       </Routes>
       {/* <div className='flex h-screen'>
