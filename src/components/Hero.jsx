@@ -20,12 +20,15 @@ const Hero = () => {
               Build beautiful, professional resumes in minutes with our intuitive builder. Stand out from the crowd and land your dream job faster.
             </p>
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <Button className="premium-button group px-8 py-6 text-base">
+              <Button asChild className="premium-button group px-8 py-6 text-base">
+                <Link to="/buildresume">
                 Create Your Resume
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </Button>
+              
               <Button asChild variant="outline" className="px-8 py-6 text-base">
-                <Link to="/template">Explore Templates</Link>
+                <Link to="/templates">Explore Templates</Link>
               </Button>
             </div>
           </div>
