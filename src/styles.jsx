@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     color: "#333333",
     textTransform: "uppercase",
     letterSpacing: 1,
+    fontWeight: "bold",
   },
 
   contact: {
