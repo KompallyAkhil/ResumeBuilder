@@ -6,7 +6,10 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     backgroundColor: "#ffffff",
   },
-
+  link: {
+    textDecoration:"none",
+    color:"black"
+  },
   header: {
     fontSize: 24,
     textAlign: "center",

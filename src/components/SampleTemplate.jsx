@@ -10,14 +10,14 @@ import { PlusCircle, User, Briefcase, GraduationCap, Code, FileCode } from 'luci
 const SampleTemplate = () => {
     const [resumeData, setResumeData] = useState({
         basics: {
-            name: 'Akhil Kompally',
-            phone: '(91+) 456-7890',
+            name: '',
+            phone: '',
             email:'',
             linkedIn:'',
             github:'',
-            location: 'San Francisco, CA',
-            website: 'https://johndoe.com',
-            summary: 'A brief summary of your professional background and key strengths...',
+            location: '',
+            website: '',
+            summary: '',
         }
     });
     console.log(resumeData.basics);
@@ -95,7 +95,7 @@ const SampleTemplate = () => {
                                                 id="email"
                                                 className="form-input"
                                                 type="email"
-                                                placeholder="john.doe@example.com"
+                                                placeholder="https://www.linkedin.com/in/username/"
                                                 value={resumeData.basics.linkedIn}
                                                 onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, linkedIn: e.target.value } })}
                                             />
@@ -106,14 +106,13 @@ const SampleTemplate = () => {
                                                 id="email"
                                                 className="form-input"
                                                 type="email"
-                                                placeholder="john.doe@example.com"
+                                                placeholder="https://github.com/username"
                                                 value={resumeData.basics.github}
                                                 onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, github: e.target.value } })}
                                             />
                                         </div>
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div className="form-input-wrapper" style={{ animationDelay: '0.25s' }}>
                                             <label className="form-label" htmlFor="location">Location</label>
                                             <input
@@ -124,18 +123,7 @@ const SampleTemplate = () => {
                                                 onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, location: e.target.value } })}
                                             />
                                         </div>
-
-                                        <div className="form-input-wrapper" style={{ animationDelay: '0.3s' }}>
-                                            <label className="form-label" htmlFor="website">Website</label>
-                                            <input
-                                                id="website"
-                                                className="form-input"
-                                                placeholder="https://johndoe.com"
-                                                value={resumeData.basics.website}
-                                                onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, website: e.target.value } })}
-                                            />
-                                        </div>
-                                    </div>
+                                   
 
                                     <div className="form-input-wrapper" style={{ animationDelay: '0.35s' }}>
                                         <label className="form-label" htmlFor="summary">Professional Summary</label>

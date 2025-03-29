@@ -1,5 +1,5 @@
 import React from "react";
-import { Document, Page, Text, View } from "@react-pdf/renderer";
+import { Document, Link, Page, Text, View } from "@react-pdf/renderer";
 import styles from "./styles";
 
 const Resume = ({ basics }) => {
@@ -8,8 +8,10 @@ const Resume = ({ basics }) => {
       <Page size="A4" style={styles.page}>
         <View>
           <Text style={styles.header}>{basics.name}</Text>
-          <Text style={styles.contact}>
-            📞 8498072762 | ✉️ akhilkompally27@gmail.com | LinkedIn | GitHub | LeetCode
+          <Text  style={styles.contact}>
+            {basics.phone}
+            | ✉️ {basics.email} | <Link href={basics.github} style={styles.link}>GitHub
+            </Link>{basics.linkedIn}
           </Text>
         </View>
 
