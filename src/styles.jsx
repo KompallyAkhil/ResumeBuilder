@@ -7,11 +7,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
   icon: {
-    width: 12,
-    height: 12,
+    width: 10,
+    height: 10,
     marginRight: 4,
   },
   link: {
+    fontSize: 10,
     color:"black",
     textDecoration: "none",
   },

@@ -2,7 +2,9 @@ import React from "react";
 import { Document, Link, Page, Text, View, Image } from "@react-pdf/renderer";
 import styles from "./styles";
 
-const Resume = ({ basics }) => {
+const Resume = ({ basics, education}) => {
+ 
+  console.log(basics,education)
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -29,21 +31,17 @@ const Resume = ({ basics }) => {
         </Text>
         {/* Education Section */}
         <Text style={styles.sectionTitle}>Education</Text>
-        <Text style={styles.text}>
-          Bachelor of Technology in Computer Science
-          {"\n"}Keshav Memorial Engineering College, Hyderabad, Telangana - Expected 2026
-          {"\n"}GPA: 8.03 / 10.00
-        </Text>
-        <Text style={styles.text}>
-          Intermediate (MPC)
-          {"\n"}Excel Junior College, Hyderabad, Telangana - 2020-2022
-          {"\n"}Percentage: 96%
-        </Text>
-        <Text style={styles.text}>
-          High School
-          {"\n"}Narayana High School, Hyderabad, Telangana - 2020
-          {"\n"}Percentage: 100%
-        </Text>
+        {education.map((edu, index) => (
+          <View key={index}>
+            <Text style={styles.text}>
+            
+              {"\n"}
+              {edu.institution} {basics.location} - {edu.startDate} - {edu.endDate || "Present"}
+              {"\n"}
+              GPA: {edu.gpa}
+            </Text>
+          </View>
+        ))}
 
         {/* Experience Section */}
         <Text style={styles.sectionTitle}>Experience</Text>

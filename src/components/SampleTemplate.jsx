@@ -4,7 +4,7 @@ import Resume from '../Resume';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlusCircle, User, Briefcase, GraduationCap, Code, FileCode } from 'lucide-react';
+import { PlusCircle, User, Briefcase, GraduationCap, Code, FileCode, XCircle } from 'lucide-react';
 
 const SampleTemplate = () => {
   const [resumeData, setResumeData] = useState({
@@ -16,8 +16,47 @@ const SampleTemplate = () => {
       github: '',
       location: '',
       summary: '',
-    }
+    },
+    education: [
+      {
+        institution: '',
+        studyType: '',
+        area: '',
+        startDate: '',
+        endDate: '',
+        gpa: '',
+      },
+    ],
   });
+  const addEducation = () => {
+    setResumeData({
+      ...resumeData,
+      education: [
+        ...resumeData.education,
+        {
+          institution: '',
+          studyType: '',
+          area: '',
+          startDate: '',
+          endDate: '',
+          gpa: '',
+        },
+      ],
+    });
+  };
+  const removeEducation = (index) => {
+    setResumeData({
+      ...resumeData,
+      education: resumeData.education.filter((_, i) => i !== index),
+    });
+  };
+
+  const handleEducationChange = (index, field, value) => {
+    const updatedEducation = resumeData.education.map((edu, i) =>
+      i === index ? { ...edu, [field]: value } : edu
+    );
+    setResumeData({ ...resumeData, education: updatedEducation });
+  };
   return (
     <>
       <div className='pt-20 flex h-screen'>
@@ -50,7 +89,6 @@ const SampleTemplate = () => {
                 </TabsTrigger>
               </TabsList>
 
-              {/* Basic Information */}
               <TabsContent value="basics" className="mt-0">
                 <div className="glass-panel p-6">
                   <h2 className="section-title">Personal Information</h2>
@@ -121,8 +159,6 @@ const SampleTemplate = () => {
                       onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, location: e.target.value } })}
                     />
                   </div>
-
-
                   <div className="form-input-wrapper" style={{ animationDelay: '0.35s' }}>
                     <label className="form-label" htmlFor="summary">Professional Summary</label>
                     <textarea
@@ -147,93 +183,55 @@ const SampleTemplate = () => {
                 <div className="glass-panel p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="section-title mb-0">Education</h2>
-                    <Button
-                      size="sm"
-                      className="flex items-center gap-1 bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary"
-                    >
+                    <Button size="sm" className="flex items-center gap-1 bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary" onClick={addEducation}>
                       <PlusCircle className="h-4 w-4" />
                       <span>Add</span>
                     </Button>
                   </div>
 
-                  {/* {resumeData.education.map((edu, index) => (
-              <div key={index} className="mb-8 relative glass-panel p-5 border border-muted">
-                <div className="absolute top-3 right-3">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    disabled={resumeData.education.length <= 1}
-                    className="h-6 w-6 text-muted-foreground hover:text-destructive"
-                  >
-                    <XCircle className="h-5 w-5" />
-                  </Button>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="form-input-wrapper mb-3">
-                    <label className="form-label" htmlFor={`institution-${index}`}>Institution</label>
-                    <input
-                      id={`institution-${index}`}
-                      className="form-input"
-                      value={edu.institution}
-                      placeholder="University of California, Berkeley"
-                    />
-                  </div>
-                  
-                  <div className="form-input-wrapper mb-3">
-                    <label className="form-label" htmlFor={`studyType-${index}`}>Degree</label>
-                    <input
-                      id={`studyType-${index}`}
-                      className="form-input"
-                      value={edu.studyType}
-                      placeholder="Bachelor of Science"
-                    />
-                  </div>
-                </div>
-                
-                <div className="form-input-wrapper mb-3">
-                  <label className="form-label" htmlFor={`area-${index}`}>Field of Study</label>
-                  <input
-                    id={`area-${index}`}
-                    className="form-input"
-                    value={edu.area}
-                    placeholder="Computer Science"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div className="form-input-wrapper mb-3">
-                    <label className="form-label" htmlFor={`startDate-${index}`}>Start Date</label>
-                    <input
-                      id={`startDate-${index}`}
-                      className="form-input"
-                      value={edu.startDate}
-                      placeholder="Sept 2018"
-                    />
-                  </div>
-                  
-                  <div className="form-input-wrapper mb-3">
-                    <label className="form-label" htmlFor={`endDate-${index}`}>End Date</label>
-                    <input
-                      id={`endDate-${index}`}
-                      className="form-input"
-                      value={edu.endDate}
-                      placeholder="May 2022 (or Present)"
-                    />
-                  </div>
-                  
-                  <div className="form-input-wrapper mb-3">
-                    <label className="form-label" htmlFor={`gpa-${index}`}>GPA</label>
-                    <input
-                      id={`gpa-${index}`}
-                      className="form-input"
-                      value={edu.gpa}
-                      placeholder="3.8/4.0"
-                    />
-                  </div>
-                </div>
-              </div>
-            ))} */}
+                  {resumeData.education.map((education, index) => (
+                    <div key={index} className="mb-8 relative glass-panel p-5 border border-muted">
+                      <div className="absolute top-3 right-3">
+                        <Button variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground hover:text-destructive" onClick={() => removeEducation(index)}>
+                          <XCircle className="h-5 w-5" />
+                        </Button>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="form-input-wrapper mb-3">
+                          <label className="form-label">Institution</label>
+                          <input className="form-input" placeholder="University of California, Berkeley" value={education.institution} onChange={(e) => handleEducationChange(index, 'institution', e.target.value)} />
+                        </div>
+
+                        <div className="form-input-wrapper mb-3">
+                          <label className="form-label">Degree</label>
+                          <input className="form-input" placeholder="Bachelor of Science" value={education.studyType} onChange={(e) => handleEducationChange(index, 'studyType', e.target.value)} />
+                        </div>
+                      </div>
+
+                      <div className="form-input-wrapper mb-3">
+                        <label className="form-label">Field of Study</label>
+                        <input className="form-input" placeholder="Computer Science" value={education.area} onChange={(e) => handleEducationChange(index, 'area', e.target.value)} />
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="form-input-wrapper mb-3">
+                          <label className="form-label">Start Date</label>
+                          <input className="form-input" placeholder="Sept 2018" value={education.startDate} onChange={(e) => handleEducationChange(index, 'startDate', e.target.value)} />
+                        </div>
+
+                        <div className="form-input-wrapper mb-3">
+                          <label className="form-label">End Date</label>
+                          <input className="form-input" placeholder="May 2022 (or Present)" value={education.endDate} onChange={(e) => handleEducationChange(index, 'endDate', e.target.value)} />
+                        </div>
+
+                        <div className="form-input-wrapper mb-3">
+                          <label className="form-label">GPA</label>
+                          <input className="form-input" placeholder="3.8/4.0" value={education.gpa} onChange={(e) => handleEducationChange(index, 'gpa', e.target.value)} />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </TabsContent>
 
@@ -444,7 +442,7 @@ const SampleTemplate = () => {
         </div>
         <div class="flex-1 flex items-center justify-center">
           <PDFViewer showToolbar={false} width='100%' height='100%'>
-            <Resume basics={resumeData.basics} />
+            <Resume  basics={resumeData.basics} education={resumeData.education}/>
           </PDFViewer>
 
         </div>
