@@ -6,25 +6,32 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
     backgroundColor: "#ffffff",
   },
+  icon: {
+    width: 12,
+    height: 12,
+    marginRight: 4,
+  },
   link: {
-    textDecoration:"none",
-    color:"black"
+    color:"black",
+    textDecoration: "none",
   },
   header: {
     fontSize: 24,
     textAlign: "center",
     marginBottom: 10,
     color: "#333333",
-    textTransform: "uppercase",
     letterSpacing: 1,
     fontWeight: "bold",
   },
 
   contact: {
     fontSize: 10,
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "row",
     textAlign: "center",
     color: "#555555",
-    marginBottom: 20,
+    marginTop: 10,
     lineHeight: 1.4,
   },
 

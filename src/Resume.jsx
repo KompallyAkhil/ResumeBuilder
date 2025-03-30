@@ -1,25 +1,32 @@
 import React from "react";
-import { Document, Link, Page, Text, View } from "@react-pdf/renderer";
+import { Document, Link, Page, Text, View, Image } from "@react-pdf/renderer";
 import styles from "./styles";
 
 const Resume = ({ basics }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        <View>
-          <Text style={styles.header}>{basics.name}</Text>
-          <Text  style={styles.contact}>
-            {basics.phone}
-            | ✉️ {basics.email} | <Link href={basics.github} style={styles.link}>GitHub
-            </Link>{basics.linkedIn}
-          </Text>
+        <View style={styles.header}>
+          <Text style={styles.name}>{basics.name}</Text>
+          <View style={styles.contact}>
+            <Image src="https://img.icons8.com/ios-filled/50/000000/phone.png" style={styles.icon} />
+            <Text>{basics.phone} | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/000000/email.png" style={styles.icon} />
+            <Text>{basics.email} | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" style={styles.icon} />
+            <Link href={basics.linkedIn} style={styles.link}>LinkedIn</Link>
+            <Text> | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/000000/github.png" style={styles.icon} />
+            <Link href={basics.github} style={styles.link}>GitHub</Link>
+            <Text> | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/000000/marker.png" style={styles.icon} />
+            <Text>{basics.location}</Text>
+          </View>
         </View>
-
         <Text style={styles.sectionTitle}>Objective</Text>
         <Text style={styles.text}>
           {basics.summary}
         </Text>
-
         {/* Education Section */}
         <Text style={styles.sectionTitle}>Education</Text>
         <Text style={styles.text}>
