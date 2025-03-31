@@ -34,6 +34,16 @@ const SampleTemplate = () => {
       },
 
     ],
+    projects: [
+      {
+        title: '',
+        description: '',
+        technologies: '',
+        link: '',
+        startDate: '',
+        endDate: ''
+      }
+    ]
   });
   const addEducation = () => {
     setResumeData({
@@ -51,7 +61,31 @@ const SampleTemplate = () => {
       ],
     });
   };
-
+  const addProject = () => {
+    setResumeData({
+      ...resumeData,
+      projects: [
+        ...resumeData.projects, {
+          title: '',
+          description: '',
+          technologies: '',
+          link: '',
+          startDate: '',
+          endDate: ''
+        },
+      ],
+    });
+  };
+  const removeProject = (index) => {
+    setResumeData((prevData) => {
+      if (prevData.projects.length <= 1) {
+        return prevData;
+      }
+      return {
+        ...prevData, projects: prevData.projects.filter((_, i) => i !== index),
+      }
+    });
+  };
   const removeEducation = (index) => {
     setResumeData((prevData) => {
       if (prevData.education.length <= 1) {
@@ -91,6 +125,12 @@ const SampleTemplate = () => {
     );
     setResumeData({ ...resumeData, education: updatedEducation });
   };
+  const handleProjectChange = (index, field, value) => {
+    const updatedProjects = resumeData.projects.map((proj, i) =>
+      i === index ? { ...proj, [field]: value } : proj
+    );
+    setResumeData({ ...resumeData, projects: updatedProjects });
+  }
   return (
     <>
       <div className='pt-20 flex h-screen'>
@@ -109,13 +149,13 @@ const SampleTemplate = () => {
                   <GraduationCap className="h-4 w-4" />
                   <span className="hidden sm:inline">Education</span>
                 </TabsTrigger>
-                <TabsTrigger value="skills" className="flex items-center gap-2">
-                  <Code className="h-4 w-4" />
-                  <span className="hidden sm:inline">Skills</span>
-                </TabsTrigger>
                 <TabsTrigger value="projects" className="flex items-center gap-2">
                   <FileCode className="h-4 w-4" />
                   <span className="hidden sm:inline">Projects</span>
+                </TabsTrigger>
+                <TabsTrigger value="skills" className="flex items-center gap-2">
+                  <Code className="h-4 w-4" />
+                  <span className="hidden sm:inline">Skills</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -329,13 +369,12 @@ const SampleTemplate = () => {
                 </div>
               </TabsContent>
 
-              {/* Projects */}
               <TabsContent value="projects" className="mt-0">
                 <div className="glass-panel p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="section-title mb-0">Projects</h2>
                     <Button
-                      // onClick={addProject} 
+                      onClick={addProject}
                       size="sm"
                       className="flex items-center gap-1 bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary"
                     >
@@ -343,51 +382,71 @@ const SampleTemplate = () => {
                       <span>Add</span>
                     </Button>
                   </div>
+                  {resumeData.projects.map((project, index) => (
+                    <div key={index} className="mb-8 relative glass-panel p-5 border border-muted">
+                      <div className="absolute top-3 right-3">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          disabled={resumeData.projects.length <= 1}
+                          onClick={() => removeProject(index)}
+                          className="h-6 w-6 text-muted-foreground hover:text-destructive"
+                        >
+                          <XCircle className="h-5 w-5" />
+                        </Button>
+                      </div>
+                      <div className="form-input-wrapper mb-3">
+                        <label className="form-label" >Project Name</label>
+                        <input
+                          className="form-input"
+                          value={project.name}
+                          placeholder="Project Name"
+                          onChange={(e) => handleProjectChange(index, 'title', e.target.value)}
+                        />
+                        <div className="form-input-wrapper mt-3 mb-0">
+                          <label className="form-label" >GitHub</label>
+                          <input
+                            className="form-input"
+                            value={project.link}
+                            placeholder="https://github.com/username/repository"
+                            onChange={(e) => handleProjectChange(index, 'link', e.target.value)}
+                          />
+                        </div>
 
-                  {/* {resumeData.projects.map((project, index) => (
-              <div key={index} className="mb-8 relative glass-panel p-5 border border-muted">
-                <div className="absolute top-3 right-3">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    disabled={resumeData.projects.length <= 1}
-                    className="h-6 w-6 text-muted-foreground hover:text-destructive"
-                  >
-                    <XCircle className="h-5 w-5" />
-                  </Button>
-                </div>
-                
-                <div className="form-input-wrapper mb-3">
-                  <label className="form-label" htmlFor={`projectName-${index}`}>Project Name</label>
-                  <input
-                    id={`projectName-${index}`}
-                    className="form-input"
-                    value={project.name}
-                    placeholder="Personal Portfolio Website"
-                  />
-                </div>
-                
-                <div className="form-input-wrapper mb-3">
-                  <label className="form-label" htmlFor={`projectDescription-${index}`}>Description</label>
-                  <textarea
-                    id={`projectDescription-${index}`}
-                    className="form-input-textarea"
-                    value={project.description}
-                    placeholder="A brief description of the project, its purpose, and your role..."
-                  />
-                </div>
-                
-                <div className="form-input-wrapper mb-0">
-                  <label className="form-label" htmlFor={`projectTechnologies-${index}`}>Technologies Used</label>
-                  <input
-                    id={`projectTechnologies-${index}`}
-                    className="form-input"
-                    value={project.technologies}
-                    placeholder="React, Node.js, MongoDB"
-                  />
-                </div>
-              </div>
-            ))} */}
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="form-input-wrapper mb-3">
+                          <label className="form-label">Start Date</label>
+                          <input className="form-input" placeholder="Sept 2018" value={project.startDate}
+                            onChange={(e) => handleProjectChange(index, 'startDate', e.target.value)}
+                          />
+                        </div>
+                        <div className="form-input-wrapper mb-3">
+                          <label className="form-label">End Date</label>
+                          <input className="form-input" placeholder="May 2022 (or Present)" value={project.endDate} onChange={(e) => handleProjectChange(index, 'endDate', e.target.value)} />
+                        </div>
+                      </div>
+                      <div className="form-input-wrapper mb-0">
+                        <label className="form-label" >Technologies Used</label>
+                        <input
+                          className="form-input"
+                          value={project.technologies}
+                          placeholder="React, Node.js, MongoDB"
+                          onChange={(e) => handleProjectChange(index, 'technologies', e.target.value)}
+                        />
+                      </div>
+                      <div className="form-input-wrapper mt-3 mb-0">
+                        <label className="form-label">Description</label>
+                        <textarea
+                          className="form-input-textarea"
+                          value={project.description}
+                          placeholder="A brief description of the project, its purpose, and your role..."
+                          onChange={(e) => handleProjectChange(index, 'description', e.target.value)}
+                        />
+                      </div>
+                    </div>
+
+                  ))}
                 </div>
               </TabsContent>
             </Tabs>
@@ -395,7 +454,7 @@ const SampleTemplate = () => {
         </div>
         <div class="flex-1 flex items-center justify-center">
           <PDFViewer showToolbar={false} width='100%' height='100%'>
-            <Resume basics={resumeData.basics} education={resumeData.education} />
+            <Resume basics={resumeData.basics} education={resumeData.education} projects={resumeData.projects} />
           </PDFViewer>
 
         </div>
