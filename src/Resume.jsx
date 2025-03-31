@@ -29,38 +29,29 @@ const Resume = ({ basics, education }) => {
           <Text style={styles.text}>{basics.summary}</Text>
         </View>
         <Text style={styles.sectionTitle}>EDUCATION</Text>
-  
-  {education.map((edu, index) => (
-    <View key={index} style={styles.educationEntry}>
-      <View style={styles.educationDetails}>
-        <Text style={styles.institution}>
-          {edu.studyType}
-        </Text>
-        <Text style={styles.date}>
-          {edu.startDate} - {edu.endDate || "Present"}
-        </Text>
-      </View>
-      <Text style={styles.date}>
-        {edu.institution},{edu.location}
-      </Text>
-      {edu.gpa && (
-        <Text style={styles.gpa}>
-          GPA: {edu.gpa}
-        </Text>
-      )}
-    </View>
-  ))}
-        {/* Experience Section */}
-        <Text style={styles.sectionTitle}>Experience</Text>
-        <Text style={styles.text}>
-          Chat With Author — Frontend Developer (April - June 2024)
-        </Text>
-        <Text style={styles.subText}>
-          - Collaborated in a team of six to develop a chatbot application for PDF-based question answering.
-          {"\n"}- Built the frontend using React.js and the backend using Flask, with Google Generative AI integration.
-          {"\n"}- Focused on API handling, performance optimization, and a responsive user interface.
-        </Text>
+        {education.map((edu, index) => (
+          <View key={index} style={styles.educationEntry}>
+            <View style={styles.educationDetails}>
+              <Text style={styles.institution}>
+                {edu.studyType || "Course Name"}
+              </Text>
+              <Text style={styles.date}>
+                {edu.startDate || "Start"} - {edu.endDate || "End"}
+              </Text>
+            </View>
+            <Text style={styles.date}>
+              {edu.institution || "University Name"},{edu.location || "Location"}
+            </Text>
+            {edu.gpa && (
+              <Text style={styles.gpa}>
+                GPA: {edu.gpa || "N/A"}
+              </Text>
+            )}
+          </View>
+        ))}
 
+
+        
         {/* Projects Section */}
         <Text style={styles.sectionTitle}>Projects</Text>
         <Text style={styles.text}>

@@ -4,7 +4,7 @@ import Resume from '../Resume';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { PlusCircle, User, Briefcase, GraduationCap, Code, FileCode, XCircle } from 'lucide-react';
+import { PlusCircle, User, GraduationCap, Code, FileCode, XCircle } from 'lucide-react';
 
 const SampleTemplate = () => {
   const [resumeData, setResumeData] = useState({
@@ -51,10 +51,12 @@ const SampleTemplate = () => {
       ],
     });
   };
+
   const removeEducation = (index) => {
     setResumeData((prevData) => {
-      if (!prevData?.education || prevData.education.length <= 1) return prevData;
-
+      if (prevData.education.length <= 1){
+        return prevData;
+      }
       return {
         ...prevData,
         education: prevData.education.filter((_, i) => i !== index),
