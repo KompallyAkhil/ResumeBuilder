@@ -2,9 +2,8 @@ import React from "react";
 import { Document, Link, Page, Text, View, Image } from "@react-pdf/renderer";
 import styles from "./styles";
 
-const Resume = ({ basics, education}) => {
- 
-  console.log(basics,education)
+const Resume = ({ basics, education }) => {
+
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -25,24 +24,32 @@ const Resume = ({ basics, education}) => {
             <Text>{basics.location}</Text>
           </View>
         </View>
-        <Text style={styles.sectionTitle}>Objective</Text>
-        <Text style={styles.text}>
-          {basics.summary}
+        <View>
+          <Text style={styles.sectionTitle}>Objective</Text>
+          <Text style={styles.text}>{basics.summary}</Text>
+        </View>
+        <Text style={styles.sectionTitle}>EDUCATION</Text>
+  
+  {education.map((edu, index) => (
+    <View key={index} style={styles.educationEntry}>
+      <View style={styles.educationDetails}>
+        <Text style={styles.institution}>
+          {edu.studyType}
         </Text>
-        {/* Education Section */}
-        <Text style={styles.sectionTitle}>Education</Text>
-        {education.map((edu, index) => (
-          <View key={index}>
-            <Text style={styles.text}>
-            
-              {"\n"}
-              {edu.institution} {basics.location} - {edu.startDate} - {edu.endDate || "Present"}
-              {"\n"}
-              GPA: {edu.gpa}
-            </Text>
-          </View>
-        ))}
-
+        <Text style={styles.date}>
+          {edu.startDate} - {edu.endDate || "Present"}
+        </Text>
+      </View>
+      <Text style={styles.date}>
+        {edu.institution},{edu.location}
+      </Text>
+      {edu.gpa && (
+        <Text style={styles.gpa}>
+          GPA: {edu.gpa}
+        </Text>
+      )}
+    </View>
+  ))}
         {/* Experience Section */}
         <Text style={styles.sectionTitle}>Experience</Text>
         <Text style={styles.text}>

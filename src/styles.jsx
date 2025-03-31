@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
   link: {
     fontSize: 10,
-    color:"black",
+    color: "black",
     textDecoration: "none",
   },
   header: {
@@ -37,14 +37,40 @@ const styles = StyleSheet.create({
   },
 
   sectionTitle: {
-    fontSize: 16,
-    marginBottom: 8,
-    color: "#000000",
-    fontWeight: "bold",
-    borderBottomWidth: 2,
-    borderBottomColor: "#cccccc",
-    paddingBottom: 4,
-    textTransform: "uppercase",
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 5,
+    textTransform: 'uppercase',
+    borderBottomWidth: 1,
+    borderBottomColor: '#000',
+    paddingBottom: 3
+  },
+
+  educationEntry: {
+    marginBottom: 10,
+  },
+  educationDetails:{
+    flexDirection: "row",
+    justifyContent: "space-between" 
+  },
+  institution: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    marginBottom: 1
+  },
+
+  date: {
+    fontWeight: 'bold',
+    fontSize: 10,
+    color: '#555',
+    marginBottom: 3
+  },
+
+  gpa: {
+    fontSize: 10,
+    marginTop: 2,
+    fontWeight: 'bold',
   },
 
   text: {
