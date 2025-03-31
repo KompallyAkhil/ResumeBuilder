@@ -54,7 +54,7 @@ const SampleTemplate = () => {
 
   const removeEducation = (index) => {
     setResumeData((prevData) => {
-      if (prevData.education.length <= 1){
+      if (prevData.education.length <= 1) {
         return prevData;
       }
       return {
@@ -84,7 +84,7 @@ const SampleTemplate = () => {
       };
     });
   };
-  
+
   const handleEducationChange = (index, field, value) => {
     const updatedEducation = resumeData.education.map((edu, i) =>
       i === index ? { ...edu, [field]: value } : edu
@@ -190,7 +190,10 @@ const SampleTemplate = () => {
                     />
                   </div>
                   <div className="form-input-wrapper" style={{ animationDelay: '0.35s' }}>
-                    <label className="form-label" htmlFor="summary">Professional Summary</label>
+                    <div className='flex justify-between items-center mb-2'>
+                      <label className="form-label" htmlFor="summary">Professional Summary</label>
+                      <Button>Generate Summary</Button>
+                    </div>
                     <textarea
                       id="summary"
                       className="form-input-textarea"
@@ -221,10 +224,10 @@ const SampleTemplate = () => {
                     <div key={index} className="mb-8 relative glass-panel p-5 border border-muted">
                       <div className="absolute top-3 right-3">
                         <Button variant="ghost"
-                            size="icon"
-                            disabled={resumeData.education.length <= 1}
-                            onClick={() => removeEducation(index)}
-                            className="h-6 w-6 text-muted-foreground hover:text-destructive">
+                          size="icon"
+                          disabled={resumeData.education.length <= 1}
+                          onClick={() => removeEducation(index)}
+                          className="h-6 w-6 text-muted-foreground hover:text-destructive">
                           <XCircle className="h-5 w-5" />
                         </Button>
                       </div>

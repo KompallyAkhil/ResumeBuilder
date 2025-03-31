@@ -24,7 +24,92 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     fontWeight: "bold",
   },
+  objectiveContainer: {
+    marginBottom: 20,
+    paddingBottom: 15,
+  },
 
+  objectiveTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#2c3e50',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginLeft: 5,
+  },
+  objectiveContent: {
+    fontSize: 11,
+    lineHeight: 1.6,
+    color: '#34495e',
+    textAlign: 'left',
+    paddingHorizontal: 5,
+  },
+  objectiveIcon: {
+    width: 14,
+    height: 14,
+    marginRight: 8,
+  },
+  educationContainer: {
+    marginBottom: 15,
+  },
+  educationEntry: {
+    marginBottom: 12,
+    paddingBottom: 10,
+    borderBottomWidth: 0.5,
+    borderBottomColor: '#e0e0e0',
+  },
+  educationHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 3,
+  },
+  institution: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#2c3e50',
+  },
+  educationDetails: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    marginBottom: 4,
+  },
+  degree: {
+    fontSize: 11,
+    color: '#34495e',
+  },
+  date: {
+    fontSize: 10,
+    color: '#7f8c8d',
+    fontWeight: 'semibold',
+  },
+  educationFooter: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    fontSize: 10,
+  },
+  location: {
+    fontSize: 10,
+    color: '#95a5a6',
+  },
+  gpa: {
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  gpaLabel: {
+    fontWeight: 'normal',
+  },
+  sectionTitle: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginTop: 12,
+    marginBottom: 8,
+    textTransform: 'uppercase',
+    color: '#2c3e50',
+    borderBottomWidth: 1.5,
+    paddingBottom: 3,
+    letterSpacing: 0.5,
+  },
   contact: {
     fontSize: 10,
     display: "flex",
@@ -34,122 +119,6 @@ const styles = StyleSheet.create({
     color: "#555555",
     marginTop: 10,
     lineHeight: 1.4,
-  },
-
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 5,
-    textTransform: 'uppercase',
-    borderBottomWidth: 1,
-    borderBottomColor: '#000',
-    paddingBottom: 3
-  },
-
-  educationEntry: {
-    marginBottom: 10,
-  },
-  educationDetails:{
-    flexDirection: "row",
-    justifyContent: "space-between" 
-  },
-  institution: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    marginBottom: 1
-  },
-
-  date: {
-    fontWeight: 'bold',
-    fontSize: 10,
-    color: '#555',
-    marginBottom: 3
-  },
-
-  gpa: {
-    fontSize: 10,
-    marginTop: 2,
-    fontWeight: 'bold',
-  },
-
-  text: {
-    fontSize: 12,
-    color: "#333333",
-    marginBottom: 8,
-    lineHeight: 1.6,
-  },
-
-  subText: {
-    fontSize: 10,
-    color: "#555555",
-    marginBottom: 6,
-  },
-
-  list: {
-    marginVertical: 8,
-    paddingLeft: 20,
-  },
-
-  listItem: {
-    fontSize: 12,
-    marginBottom: 5,
-    flexDirection: "row",
-    alignItems: "center",
-    color: "#333333",
-  },
-
-  bulletPoint: {
-    fontSize: 12,
-    marginRight: 5,
-    color: "#555555",
-  },
-
-  skills: {
-    fontSize: 12,
-    marginTop: 10,
-    lineHeight: 1.4,
-    display: "flex",
-    flexWrap: "wrap",
-    flexDirection: "row",
-    gap: 10,
-  },
-
-  // Individual skill styling
-  skillItem: {
-    fontSize: 12,
-    color: "#444",
-    backgroundColor: "#f2f2f2",
-    padding: 4,
-    marginRight: 5,
-    borderRadius: 4,
-  },
-
-  // Spacing for sections
-  section: {
-    marginBottom: 15,
-  },
-
-  // Project section enhancements
-  projectTitle: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#222",
-    marginBottom: 6,
-  },
-  projectDescription: {
-    fontSize: 12,
-    color: "#555",
-    lineHeight: 1.5,
-    marginBottom: 8,
-  },
-
-  // Footer (bottom spacing, optional)
-  footer: {
-    fontSize: 10,
-    textAlign: "center",
-    marginTop: 30,
-    color: "#aaa",
   },
 });
 

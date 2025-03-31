@@ -24,12 +24,48 @@ const Resume = ({ basics, education }) => {
             <Text>{basics.location}</Text>
           </View>
         </View>
-        <View>
-          <Text style={styles.sectionTitle}>Objective</Text>
-          <Text style={styles.text}>{basics.summary}</Text>
-        </View>
-        <Text style={styles.sectionTitle}>EDUCATION</Text>
-        {education.map((edu, index) => (
+        {basics?.summary && (
+          <View style={styles.educationContainer}>
+              <Text style={styles.sectionTitle}>Professional Summary</Text>
+            <Text style={styles.objectiveContent}>
+              {basics.summary}
+            </Text>
+          </View>
+        )}
+        {education?.length > 0 && (
+          <View style={styles.educationContainer}>
+            <Text style={styles.sectionTitle}>Education</Text>
+            {education.map((edu, index) => (
+              <View key={index} style={styles.educationEntry}>
+                <View style={styles.educationHeader}>
+                  <Text style={styles.institution}>
+                    {edu.institution || "University Name"}
+                  </Text>
+                  <Text style={styles.date}>
+                    {edu.startDate || "Start Date"} — {edu.endDate || "Present"}
+                  </Text>
+                </View>
+                <View style={styles.educationDetails}>
+                  <Text style={styles.degree}>
+                    {edu.studyType || "Degree/Field of Study"}
+                  </Text>
+                  {edu.gpa && (
+                    <Text style={styles.gpa}>
+                      <Text style={styles.gpaLabel}>GPA: </Text>
+                      {edu.gpa}
+                    </Text>
+                  )}
+                </View>
+                <View style={styles.educationFooter}>
+                    <Text style={styles.location}>
+                      {edu.location || "Location"}
+                    </Text>
+                </View>
+              </View>
+            ))}
+          </View>
+        )}
+        {/* {education.map((edu, index) => (
           <View key={index} style={styles.educationEntry}>
             <View style={styles.educationDetails}>
               <Text style={styles.institution}>
@@ -48,27 +84,8 @@ const Resume = ({ basics, education }) => {
               </Text>
             )}
           </View>
-        ))}
+        ))} */}
 
-
-        
-        {/* Projects Section */}
-        <Text style={styles.sectionTitle}>Projects</Text>
-        <Text style={styles.text}>
-          Magic Board — An AI-powered blackboard canvas for solving mathematical problems through image analysis.
-          {"\n"}StreamSnatch — A video downloader for Instagram and Facebook, allowing quick URL-based downloads.
-          {"\n"}LeetCodolio — A personalized LeetCode profile tracker built with React.js and Node.js.
-          {"\n"}Buddy-GPT — A chatbot leveraging Google Generative AI for engaging user interactions.
-        </Text>
-
-        {/* Skills Section */}
-        <Text style={styles.sectionTitle}>Skills</Text>
-        <Text style={styles.skills}>
-          - Programming Languages: Python, JavaScript
-          {"\n"}- Frameworks / Libraries: Bootstrap, React.js, Chart.js
-          {"\n"}- Developer Tools: Git/GitHub, VS Code, Vercel, Axios, Puppeteer, REST APIs
-          {"\n"}- Problem Solving: Leetcode (250+), Algorithm Design (Python)
-        </Text>
       </Page>
     </Document>
   );
