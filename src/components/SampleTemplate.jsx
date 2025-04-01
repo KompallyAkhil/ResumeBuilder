@@ -29,10 +29,10 @@ const SampleTemplate = () => {
     ],
     skills: [
       {
-        "Programming Languages": ["Python", "JavaScript"],
-        "Frameworks / Libraries": ["Bootstrap", "React.js", "Chart.js"],
-        "Developer Tools": ["Git/GitHub", "VS Code", "Vercel", "Axios", "Puppeteer", "REST APIs"],
-        "Problem Solving": ["Leetcode (250+)", "Algorithm Design (Python)"],
+        "Programming Languages": [],
+        "Frameworks / Libraries": [],
+        "Developer Tools": [],
+        "Problem Solving": [],
       },
 
     ],
@@ -269,7 +269,7 @@ const SampleTemplate = () => {
                     />
                   </div>
                   <Button>
-                    <PDFDownloadLink document={<Resume basics={resumeData.basics} education={resumeData.education} />} fileName="example.pdf">
+                    <PDFDownloadLink document={<Resume basics={resumeData.basics} education={resumeData.education} projects={resumeData.projects} skills={resumeData.skills}/>} fileName="example.pdf">
                       {({ loading }) => (loading ? 'Generating PDF...' : 'Download PDF')}
                     </PDFDownloadLink>
 

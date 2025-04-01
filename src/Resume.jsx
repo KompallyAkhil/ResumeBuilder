@@ -2,7 +2,7 @@ import React from "react";
 import { Document, Link, Page, Text, View, Image } from "@react-pdf/renderer";
 import styles from "./styles";
 
-const Resume = ({ basics, education, projects }) => {
+const Resume = ({ basics, education, projects,skills }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -48,12 +48,12 @@ const Resume = ({ basics, education, projects }) => {
                   <Text style={styles.degree}>
                     {edu.studyType || "Field of Study"}
                   </Text>
-                 
-                    <Text style={styles.gpa}>
-                      <Text style={styles.gpaLabel}>GPA: </Text>
-                      {edu.gpa || "8.66"}
-                    </Text>
-               
+
+                  <Text style={styles.gpa}>
+                    <Text style={styles.gpaLabel}>GPA: </Text>
+                    {edu.gpa || "8.66"}
+                  </Text>
+
                 </View>
                 <View style={styles.educationFooter}>
                   <Text style={styles.location}>
@@ -73,9 +73,9 @@ const Resume = ({ basics, education, projects }) => {
                   <View style={styles.projectHeading}>
                     <Text style={styles.projectTitle}>{project.title || "Project Title"} </Text>
                     <Link href={project.link} style={styles.link}>
-                    <View style={{display:"flex",flexDirection:"row"}}>
-                      <Image src="https://img.icons8.com/ios-filled/50/000000/github.png" style={styles.icon} />
-                      <Text style={styles.projectLink}>GitHub</Text>
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                        <Image src="https://img.icons8.com/ios-filled/50/000000/github.png" style={styles.icon} />
+                        <Text style={styles.projectLink}>GitHub</Text>
                       </View>
                     </Link>
                   </View>
@@ -86,7 +86,26 @@ const Resume = ({ basics, education, projects }) => {
             ))}
           </View>
         )}
-         <Text style={styles.sectionTitle}>Skills</Text>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>SKILLS</Text>
+          <View style={styles.skillsContainer}>
+            {skills.length > 0 && Object.entries(skills[0]).map(([category, skillList]) => (
+              <View key={category} style={styles.skillCategory}>
+                <View style={{display:"flex"}}>
+                  <Text style={styles.skillCategoryTitle}>{category}</Text>
+                  {skillList.map((skill, index) => (
+                    <View style={{display:"flex"}}>
+                      <Text key={index} style={styles.skillItem}>
+                        {skill}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            ))}
+          </View>
+        </View>
+      
       </Page>
     </Document>
   );
