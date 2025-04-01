@@ -65,25 +65,19 @@ const Resume = ({ basics, education, projects }) => {
           </View>
         )}
         {projects?.length > 0 && (
-          <View style={styles.educationContainer}>
+          <View style={styles.projectsContainer}>
             <Text style={styles.sectionTitle}>Projects</Text>
             {projects.map((project, index) => (
               <View key={index} style={styles.projectEntry}>
-                <Text style={styles.institution}>
-                  {project.title || "Project Title"}
-                </Text>
-                <Text style={styles.date}>
-                  {project.startDate || "Start Date"} — {project.endDate || "Present"}
-                </Text>
-                <Text style={styles.degree}>
-                  {project.description || "Project Description"}
-                </Text>
-                <Text style={styles.gpa}>
-                  <Text style={styles.gpaLabel}>Technologies: </Text>
-                  {project.technologies}
-                </Text>
-                <Image src="https://img.icons8.com/ios-filled/50/000000/github.png" style={styles.icon} />
-                <Link href={project.link} style={styles.link}>Link</Link>
+                <View style={styles.projectHeader}>
+                  <Text style={styles.projectTitle}>{project.title || "Project Title"}</Text>
+                      <Link href={project.link} style={styles.link}>
+                        <Text style={styles.projectLink}>GitHub</Text>
+                        <Image src="https://img.icons8.com/ios-filled/50/000000/github.png" style={styles.icon} />
+                      </Link>
+                    <Text style={styles.projectDate}>{project.month || "Month"} - {project.year || "Year"}</Text>
+                  </View>
+                <Text style={styles.projectDescription}>{project.description || "Project Description"}</Text>
               </View>
             ))}
           </View>

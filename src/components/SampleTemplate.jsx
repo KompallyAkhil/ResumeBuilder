@@ -53,8 +53,8 @@ const SampleTemplate = () => {
         {
           institution: '',
           studyType: '',
-          startDate: '',
-          endDate: '',
+          month: '',
+          year: '',
           location: '',
           gpa: '',
         },
@@ -70,8 +70,8 @@ const SampleTemplate = () => {
           description: '',
           technologies: '',
           link: '',
-          startDate: '',
-          endDate: ''
+          month: '',
+          year: ''
         },
       ],
     });
@@ -416,14 +416,14 @@ const SampleTemplate = () => {
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="form-input-wrapper mb-3">
-                          <label className="form-label">Start Date</label>
-                          <input className="form-input" placeholder="Sept 2018" value={project.startDate}
-                            onChange={(e) => handleProjectChange(index, 'startDate', e.target.value)}
+                          <label className="form-label">Month</label>
+                          <input className="form-input" placeholder="September" value={project.month}
+                            onChange={(e) => handleProjectChange(index, 'month', e.target.value)}
                           />
                         </div>
                         <div className="form-input-wrapper mb-3">
-                          <label className="form-label">End Date</label>
-                          <input className="form-input" placeholder="May 2022 (or Present)" value={project.endDate} onChange={(e) => handleProjectChange(index, 'endDate', e.target.value)} />
+                          <label className="form-label">Year</label>
+                          <input className="form-input" placeholder="2022 (or Present)" value={project.year} onChange={(e) => handleProjectChange(index, 'year', e.target.value)} />
                         </div>
                       </div>
                       <div className="form-input-wrapper mb-0">

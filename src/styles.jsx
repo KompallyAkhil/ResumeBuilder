@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "black",
     textDecoration: "none",
+    
   },
   header: {
     fontSize: 24,
@@ -119,6 +120,34 @@ const styles = StyleSheet.create({
     color: "#555555",
     marginTop: 10,
     lineHeight: 1.4,
+  },
+  projectsContainer: {
+    marginBottom: 15,
+  },
+  projectEntry: {
+    marginBottom: 12,
+    paddingBottom: 10,
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#e0e0e0",
+  },
+  projectHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 3,
+  },
+  projectTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "#2c3e50",
+  },
+  projectDate: {
+    fontSize: 10,
+    fontWeight: "bold",
+  },
+  projectDescription: {
+    fontSize: 11,
+    color: "#34495e",
   },
 });
 
