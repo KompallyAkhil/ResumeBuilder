@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "black",
     textDecoration: "none",
-    
   },
   header: {
     fontSize: 24,
@@ -49,9 +48,6 @@ const styles = StyleSheet.create({
     width: 14,
     height: 14,
     marginRight: 8,
-  },
-  educationContainer: {
-    marginBottom: 15,
   },
   educationEntry: {
     marginBottom: 12,
@@ -121,8 +117,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     lineHeight: 1.4,
   },
-  projectsContainer: {
-    marginBottom: 15,
+
+  projectHeading:{
+    display:"flex" , 
+    flexDirection:"row" , 
+    gap:10,
+    justifyContent:"center",
+    alignItems:"center" ,
   },
   projectEntry: {
     marginBottom: 12,
@@ -148,6 +149,7 @@ const styles = StyleSheet.create({
   projectDescription: {
     fontSize: 11,
     color: "#34495e",
+    marginTop:5,
   },
 });
 

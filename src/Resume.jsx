@@ -32,7 +32,7 @@ const Resume = ({ basics, education, projects }) => {
           </View>
         )}
         {education?.length > 0 && (
-          <View style={styles.educationContainer}>
+          <View>
             <Text style={styles.sectionTitle}>Education</Text>
             {education.map((edu, index) => (
               <View key={index} style={styles.educationEntry}>
@@ -48,12 +48,12 @@ const Resume = ({ basics, education, projects }) => {
                   <Text style={styles.degree}>
                     {edu.studyType || "Field of Study"}
                   </Text>
-                  {edu.gpa && (
+                 
                     <Text style={styles.gpa}>
                       <Text style={styles.gpaLabel}>GPA: </Text>
-                      {edu.gpa}
+                      {edu.gpa || "8.66"}
                     </Text>
-                  )}
+               
                 </View>
                 <View style={styles.educationFooter}>
                   <Text style={styles.location}>
@@ -70,18 +70,23 @@ const Resume = ({ basics, education, projects }) => {
             {projects.map((project, index) => (
               <View key={index} style={styles.projectEntry}>
                 <View style={styles.projectHeader}>
-                  <Text style={styles.projectTitle}>{project.title || "Project Title"}</Text>
-                      <Link href={project.link} style={styles.link}>
-                        <Text style={styles.projectLink}>GitHub</Text>
-                        <Image src="https://img.icons8.com/ios-filled/50/000000/github.png" style={styles.icon} />
-                      </Link>
-                    <Text style={styles.projectDate}>{project.month || "Month"} - {project.year || "Year"}</Text>
+                  <View style={styles.projectHeading}>
+                    <Text style={styles.projectTitle}>{project.title || "Project Title"} </Text>
+                    <Link href={project.link} style={styles.link}>
+                    <View style={{display:"flex",flexDirection:"row"}}>
+                      <Image src="https://img.icons8.com/ios-filled/50/000000/github.png" style={styles.icon} />
+                      <Text style={styles.projectLink}>GitHub</Text>
+                      </View>
+                    </Link>
                   </View>
+                  <Text style={styles.projectDate}>{project.month || "Month"} - {project.year || "Year"}</Text>
+                </View>
                 <Text style={styles.projectDescription}>{project.description || "Project Description"}</Text>
               </View>
             ))}
           </View>
         )}
+         <Text style={styles.sectionTitle}>Skills</Text>
       </Page>
     </Document>
   );

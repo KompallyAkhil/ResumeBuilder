@@ -29,8 +29,10 @@ const SampleTemplate = () => {
     ],
     skills: [
       {
-        name: '',
-        level: '',
+        "Programming Languages": ["Python", "JavaScript"],
+        "Frameworks / Libraries": ["Bootstrap", "React.js", "Chart.js"],
+        "Developer Tools": ["Git/GitHub", "VS Code", "Vercel", "Axios", "Puppeteer", "REST APIs"],
+        "Problem Solving": ["Leetcode (250+)", "Algorithm Design (Python)"],
       },
 
     ],
@@ -45,6 +47,53 @@ const SampleTemplate = () => {
       }
     ]
   });
+  const [newSkillCategory, setNewSkillCategory] = useState('');
+  const [newSkill, setNewSkill] = useState('');
+  const addSkill = () => {
+    if (!newSkill.trim() || !newSkillCategory.trim()) return;
+    setResumeData((prevData) => {
+      const updatedSkills = { ...prevData.skills[0] };
+      if (!updatedSkills[newSkillCategory]) {
+        updatedSkills[newSkillCategory] = [];
+      }
+      
+      if (!updatedSkills[newSkillCategory].includes(newSkill)) {
+        updatedSkills[newSkillCategory] = [...updatedSkills[newSkillCategory], newSkill];
+      }
+  
+      return { 
+        ...prevData, 
+        skills: [updatedSkills] 
+      };
+    });
+  
+    setNewSkill('');
+  };
+  const removeSkill = (category, skillToRemove) => {
+    setResumeData((prevData) => {
+      const updatedSkills = { ...prevData.skills[0] };
+  
+      updatedSkills[category] = updatedSkills[category].filter(skill => skill !== skillToRemove);
+  
+      if (updatedSkills[category].length === 0) {
+        delete updatedSkills[category];
+      }
+  
+      return { 
+        ...prevData, 
+        skills: [updatedSkills]
+      };
+    });
+  };
+  
+
+  const handleCategoryChange = (e) => {
+    setNewSkillCategory(e.target.value);
+  };
+
+  const handleSkillChange = (e) => {
+    setNewSkill(e.target.value);
+  };
   const addEducation = () => {
     setResumeData({
       ...resumeData,
@@ -97,28 +146,7 @@ const SampleTemplate = () => {
       };
     });
   };
-  const addSkill = () => {
-    setResumeData({
-      ...resumeData,
-      skills: [
-        ...resumeData.skills,
-        {
-          name: '',
-          level: '',
-        },
-      ],
-    });
-  };
-  const removeSkill = (index) => {
-    setResumeData((prevData) => {
-      if (!prevData?.skills || prevData.skills.length <= 1) return prevData;
-      return {
-        ...prevData,
-        skills: prevData.skills.filter((_, i) => i !== index),
-      };
-    });
-  };
-
+  console.log(resumeData.skills)
   const handleEducationChange = (index, field, value) => {
     const updatedEducation = resumeData.education.map((edu, i) =>
       i === index ? { ...edu, [field]: value } : edu
@@ -216,9 +244,7 @@ const SampleTemplate = () => {
                         onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, github: e.target.value } })}
                       />
                     </div>
-
                   </div>
-
                   <div className="form-input-wrapper" style={{ animationDelay: '0.25s' }}>
                     <label className="form-label" htmlFor="location">Location</label>
                     <input
@@ -317,58 +343,52 @@ const SampleTemplate = () => {
                 <div className="glass-panel p-6">
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="section-title mb-0">Skills</h2>
-                    <Button
-                      onClick={addSkill}
-                      size="sm"
-                      className="flex items-center gap-1 bg-primary/10 text-primary hover:bg-primary/20 hover:text-primary"
-                    >
-                      <PlusCircle className="h-4 w-4" />
-                      <span>Add</span>
-                    </Button>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {resumeData.skills.map((skill, index) => (
-                      <div key={index} className="glass-panel p-4 border border-muted relative">
-                        <div className="absolute top-2 right-2">
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            disabled={resumeData.skills.length <= 1}
-                            onClick={() => removeSkill(index)}
-                            className="h-6 w-6 text-muted-foreground hover:text-destructive"
-                          >
-                            <XCircle className="h-4 w-4" />
-                          </Button>
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-4">
-                          <div className="form-input-wrapper mb-0">
-                            <label className="form-label" htmlFor={`skillName-${index}`}>Skill</label>
-                            <input
-                              id={`skillName-${index}`}
-                              className="form-input"
-                              value={skill.name}
-                              placeholder="JavaScript"
-                            />
-                          </div>
-
-                          <div className="form-input-wrapper mb-0">
-                            <label className="form-label" htmlFor={`skillLevel-${index}`}>Proficiency Level (Optional)</label>
-                            <input
-                              id={`skillLevel-${index}`}
-                              className="form-input"
-                              value={skill.level}
-                              placeholder="Expert"
-                            />
-                          </div>
-                        </div>
+                    {Object.entries(resumeData.skills[0]).map(([category, skillList]) => (
+                      <div key={category} className="glass-panel p-4 border border-muted">
+                        <h3 className="font-semibold mb-2">{category}</h3>
+                        <ul>
+                          {skillList.map((skill) => (
+                            <li key={skill} className="flex items-center justify-between mb-1">
+                              <span>{skill}</span>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => removeSkill(category, skill)}
+                                className="h-6 w-6 text-muted-foreground hover:text-destructive"
+                              >
+                                <XCircle className="h-4 w-4" />
+                              </Button>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     ))}
                   </div>
+                  <div className="mt-6 border-t pt-4">
+                    <h3 className="font-semibold mb-2">Add New Skill</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <input
+                        type="text"
+                        placeholder="Category"
+                        value={newSkillCategory}
+                        onChange={handleCategoryChange}
+                        className="form-input"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Skill"
+                        value={newSkill}
+                        onChange={handleSkillChange}
+                        className="form-input"
+                      />
+                      <Button size="l" onClick={addSkill}>Add Skill</Button>
+                    </div>
+                  </div>
                 </div>
               </TabsContent>
-
               <TabsContent value="projects" className="mt-0">
                 <div className="glass-panel p-6">
                   <div className="flex justify-between items-center mb-6">
@@ -454,7 +474,7 @@ const SampleTemplate = () => {
         </div>
         <div class="flex-1 flex items-center justify-center">
           <PDFViewer showToolbar={false} width='100%' height='100%'>
-            <Resume basics={resumeData.basics} education={resumeData.education} projects={resumeData.projects} />
+            <Resume basics={resumeData.basics} education={resumeData.education} projects={resumeData.projects} skills={resumeData.skills} />
           </PDFViewer>
 
         </div>
