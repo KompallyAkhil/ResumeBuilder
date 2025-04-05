@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button"
-
+import { Skeleton } from "@/components/ui/skeleton"
+import { useEffect, useState } from "react";
 const Templates = () => {
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const timer = setTimeout(() => setIsLoading(false), 2000);
+        return () => clearTimeout(timer)
+    }, []);
     const templates = [
         {
             id: 1,
@@ -43,19 +49,30 @@ const Templates = () => {
                     </div>
                 </div>
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    {templates.map((template) => (
-                        <div key={template.id} className="group">
+                    {(isLoading ? Array(4).fill(null) : templates).map((template, index) => (
+                        <div key={template?.id || index} className="group">
                             <div className="template-card group">
                                 <div className="relative aspect-[3/4] overflow-hidden rounded-md">
-                                    <img src={template.image} className="object-cover object-center w-full h-full transition-transform duration-700 group-hover:scale:105" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                        <div className="p-4 w-full">
-                                            <Button className="w-full premium-button">Use Template</Button>
-                                        </div>
-                                    </div>
+                                    {isLoading ? (
+                                        <Skeleton className="w-full h-full rounded-md" />
+                                    ) : (
+                                        <>
+                                            <img
+                                                src={template.image}
+                                                alt={template.name}
+                                                className="object-cover object-center w-full h-full transition-transform duration-700 group-hover:scale-105"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                                <div className="p-4 w-full">
+                                                    <Button className="w-full premium-button">Use Template</Button>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
+
                     ))}
                 </div>
             </section>
