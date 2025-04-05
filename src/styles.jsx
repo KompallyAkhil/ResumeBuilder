@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   educationEntry: {
-    marginBottom: 12,
+    marginBottom: 8,
     paddingBottom: 10,
     borderBottomWidth: 0.5,
     borderBottomColor: '#e0e0e0',

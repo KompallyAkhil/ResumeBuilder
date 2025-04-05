@@ -1,6 +1,5 @@
-import { PDFViewer } from '@react-pdf/renderer';
-import { useState } from 'react';
 import Resume from '../Resume';
+import { PDFViewer } from '@react-pdf/renderer';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';

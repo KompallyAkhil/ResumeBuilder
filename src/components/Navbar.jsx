@@ -23,7 +23,7 @@ const Navbar = () => {
               Resume<span className="text-primary">Builder</span>
             </Link>
           </div>
-          <div className=" md:flex items-center space-x-4">
+          <div className=" md:flex-col items-center space-x-4">
             <Button variant="ghost" className="text-sm font-medium">
               Sign In
             </Button>

@@ -2,7 +2,7 @@ import React from "react";
 import { Document, Link, Page, Text, View, Image } from "@react-pdf/renderer";
 import styles from "./styles";
 
-const Resume = ({ basics, education, projects,skills }) => {
+const Resume = ({ basics, education, projects, skills }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -23,14 +23,19 @@ const Resume = ({ basics, education, projects,skills }) => {
             <Text>{basics.location || "Location"}</Text>
           </View>
         </View>
-        {basics?.summary && (
+        {basics?.summary?.trim() ? (
           <View style={styles.educationContainer}>
             <Text style={styles.sectionTitle}>Professional Summary</Text>
             <Text style={styles.objectiveContent}>
               {basics.summary}
             </Text>
           </View>
-        )}
+        ) : <View style={styles.educationContainer}>
+          <Text style={styles.sectionTitle}>Professional Summary</Text>
+          <Text style={styles.objectiveContent}>
+            Your professional summary goes here. It should be a brief overview of your skills, experience, and career goals. This section is your chance to make a strong first impression on potential employers.
+          </Text>
+        </View>}
         {education?.length > 0 && (
           <View>
             <Text style={styles.sectionTitle}>Education</Text>
@@ -53,7 +58,6 @@ const Resume = ({ basics, education, projects,skills }) => {
                     <Text style={styles.gpaLabel}>GPA: </Text>
                     {edu.gpa || "8.66"}
                   </Text>
-
                 </View>
                 <View style={styles.educationFooter}>
                   <Text style={styles.location}>
@@ -91,10 +95,10 @@ const Resume = ({ basics, education, projects,skills }) => {
           <View style={styles.skillsContainer}>
             {skills.length > 0 && Object.entries(skills[0]).map(([category, skillList]) => (
               <View key={category} style={styles.skillCategory}>
-                <View style={{display:"flex"}}>
+                <View style={{ display: "flex" }}>
                   <Text style={styles.skillCategoryTitle}>{category}</Text>
                   {skillList.map((skill, index) => (
-                    <View style={{display:"flex"}}>
+                    <View style={{ display: "flex" }}>
                       <Text key={index} style={styles.skillItem}>
                         {skill}
                       </Text>
@@ -105,7 +109,7 @@ const Resume = ({ basics, education, projects,skills }) => {
             ))}
           </View>
         </View>
-      
+
       </Page>
     </Document>
   );
