@@ -24,13 +24,13 @@ const Resume = ({ basics, education, projects, skills }) => {
           </View>
         </View>
         {basics?.summary?.trim() ? (
-          <View style={styles.educationContainer}>
+          <View>
             <Text style={styles.sectionTitle}>Professional Summary</Text>
             <Text style={styles.objectiveContent}>
               {basics.summary}
             </Text>
           </View>
-        ) : <View style={styles.educationContainer}>
+        ) : <View >
           <Text style={styles.sectionTitle}>Professional Summary</Text>
           <Text style={styles.objectiveContent}>
             Your professional summary goes here. It should be a brief overview of your skills, experience, and career goals. This section is your chance to make a strong first impression on potential employers.

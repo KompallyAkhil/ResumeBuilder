@@ -1,12 +1,23 @@
 import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+  
 const Templates = () => {
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const timer = setTimeout(() => setIsLoading(false), 2000);
         return () => clearTimeout(timer)
     }, []);
+    const navigate = useNavigate();
     const templates = [
         {
             id: 1,
@@ -63,8 +74,16 @@ const Templates = () => {
                                                 className="object-cover object-center w-full h-full transition-transform duration-700 group-hover:scale-105"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                                <div className="p-4 w-full">
-                                                    <Button className="w-full premium-button">Use Template</Button>
+                                                <div className=" flex gap-4 p-4 w-full">
+                                                    <Dialog>
+                                                        <DialogTrigger asChild>
+                                                           <Button className="w-full premium-button">View Template</Button>                                                
+                                                        </DialogTrigger>
+                                                        <DialogContent className="w-full h-full">
+                                                            <img src={template.image} className="object-cover object-center w-full h-full "/>
+                                                        </DialogContent>
+                                                    </Dialog>
+                                                    <Button onClick={()=> navigate(`/template/${template.name}`)} className="w-full premium-button">Use Template</Button>
                                                 </div>
                                             </div>
                                         </>
