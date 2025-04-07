@@ -1,4 +1,4 @@
-import Resume from '../Resume';
+import Resume from './Templates/Resume';
 import { PDFViewer } from '@react-pdf/renderer';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@/components/ui/button';
