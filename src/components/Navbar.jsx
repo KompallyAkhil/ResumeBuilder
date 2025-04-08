@@ -1,7 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,13 +21,13 @@ const Navbar = () => {
               Resume<span className="text-primary">Builder</span>
             </Link>
           </div>
-          <div className=" md:flex-col items-center space-x-4">
-            <Button variant="ghost" className="text-sm font-medium">
-              Sign In
-            </Button>
-            <Button className="premium-button">
-              Get Started
-            </Button>
+          <div className="md:flex-col items-center space-x-4">
+            <SignedOut>
+              <SignInButton className="text-sm font-medium" />
+            </SignedOut>
+            <SignedIn>
+              <UserButton className="premium-button text-sm font-medium"/>
+            </SignedIn>
           </div>
         </div>
       </div>
