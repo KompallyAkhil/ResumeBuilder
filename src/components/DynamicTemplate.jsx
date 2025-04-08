@@ -6,18 +6,18 @@ import Resume from "./Templates/Resume";
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle, User, GraduationCap, Code, FileCode, XCircle } from 'lucide-react';
-import Executive from "./Templates/Executive";
-import Minimalist from "./Templates/Minimalist";
+import Resume1 from "./Templates/Resume1";
+import Resume2 from "./Templates/Resume2";
 const DynamicTemplate = () => {
     const { name } = useParams();
     const { resumeData, setResumeData, addSkill, newSkillCategory, setNewSkillCategory, newSkill, setNewSkill, handleCategoryChange, handleSkillChange, addEducation, addProject, removeProject, removeEducation, handleEducationChange, handleProjectChange, removeSkill } = useResumeInformation();
 
     const getTemplate = (templateName) => {
         if(templateName === "Executive") {
-            return <Executive/>
+            return <Resume1/>
         }
         else if(templateName === "Minimalist") {
-            return <Minimalist/>
+            return <Resume2/>
         }
         else{
             return <Resume/>
@@ -26,16 +26,6 @@ const DynamicTemplate = () => {
     const SelectedTemplate = getTemplate(name);
     return (
         <>
-            {/* <div className="bg-background text-foreground py-16 px-4 sm:px-6 lg:px-8">
-                <div className="section-container">
-                    <div className="text-center mb-8">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-4">{name}</h2>
-                        <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-                            This is a dynamic template page for {name}
-                        </p>
-                    </div>
-                </div>
-            </div> */}
 
             <div className='pt-20 flex h-screen'>
                 <div class="flex-1 overflow-hidden flex-col">

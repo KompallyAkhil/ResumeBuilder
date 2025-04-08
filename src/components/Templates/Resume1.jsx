@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const Executive = ({ basics, education, projects, skills }) => {
+const Resume1 = ({ basics, education, projects, skills }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -216,4 +216,4 @@ const Executive = ({ basics, education, projects, skills }) => {
   );
 };
 
-export default Executive;
+export default Resume1;
