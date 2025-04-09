@@ -21,10 +21,10 @@ const DynamicTemplate = () => {
         else if(templateName === "Minimalist") {
             return <Resume2/>
         }
-        else if(templateName === "Creative"){
+        else if(templateName === "CreativePlus"){
             return <Resume3/>
         }
-        else if(templateName === "Creative Plus"){
+        else if(templateName === "ModernTech"){
             return <Resume4/>
         }
         else{

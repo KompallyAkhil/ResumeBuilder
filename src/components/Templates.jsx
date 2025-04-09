@@ -5,9 +5,6 @@ import { useNavigate } from "react-router";
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
   
@@ -35,14 +32,14 @@ const Templates = () => {
         },
         {
             id: 3,
-            name: "Creative Plus",
+            name: "CreativePlus",
             category: "Creative",
             image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
             popular: true
         },
         {
             id: 4,
-            name: "Modern Tech",
+            name: "ModernTech",
             category: "Modern",
             image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
             popular: false
@@ -95,7 +92,6 @@ const Templates = () => {
                     ))}
                 </div>
             </section>
-
         </>
     )
 }

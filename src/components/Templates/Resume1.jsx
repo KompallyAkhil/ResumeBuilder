@@ -1,216 +1,176 @@
 import React from "react";
-import { Document, Page, Text, View, StyleSheet, Image } from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet, Image , Link} from "@react-pdf/renderer";
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
     padding: 40,
-    fontSize: 12,
-    fontFamily: 'Helvetica',
-    backgroundColor: '#ffffff'
+    backgroundColor: "#1a1a1a",
+    color: "#e0e0e0",
+    fontFamily: "Helvetica",
   },
   header: {
     marginBottom: 20,
-    paddingBottom: 20,
-    borderBottom: '1px solid #e0e0e0'
+    borderBottom: "1px solid #2a9d8f",
+    paddingBottom: 10,
   },
   name: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#2c3e50',
-    marginBottom: 5
+    fontWeight: "bold",
+    color: "#ffffff",
+    marginBottom: 5,
   },
-  title: {
-    fontSize: 14,
-    color: '#7f8c8d',
-    marginBottom: 10
-  },
-  contactInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 5
-  },
-  contactItem: {
+  contact: {
     fontSize: 10,
-    color: '#34495e'
+    flexDirection: "row",
+    gap: 8,
+  },
+  link: {
+    color: "#2a9d8f",
+    textDecoration: "none",
   },
   section: {
-    marginBottom: 15
+    marginBottom: 15,
   },
   sectionTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2c3e50',
-    marginBottom: 10,
-    borderBottom: '1px solid #e0e0e0',
-    paddingBottom: 3
+    fontSize: 14,
+    fontWeight: "bold",
+    color: "#2a9d8f",
+    marginBottom: 8,
+    letterSpacing: 1,
   },
-  sectionContent: {
-    marginLeft: 10
+  summaryText: {
+    fontSize: 11,
+    lineHeight: 1.5,
   },
   educationItem: {
-    marginBottom: 10
-  },
-  educationHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 3
+    marginBottom: 10,
   },
   institution: {
     fontSize: 12,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   degree: {
-    fontSize: 12,
-    fontStyle: 'italic'
+    fontSize: 10,
+    color: "#b3b3b3",
   },
   date: {
-    fontSize: 10,
-    color: '#7f8c8d'
+    fontSize: 9,
+    color: "#7f7f7f",
   },
   projectItem: {
-    marginBottom: 10
+    marginBottom: 12,
   },
-  projectHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 3
-  },
-  projectName: {
+  projectTitle: {
     fontSize: 12,
-    fontWeight: 'bold'
-  },
-  projectTech: {
-    fontSize: 10,
-    fontStyle: 'italic',
-    color: '#7f8c8d',
-    marginBottom: 3
+    fontWeight: "bold",
   },
   projectDesc: {
     fontSize: 10,
-    lineHeight: 1.4
+    marginVertical: 4,
   },
   skillsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
   },
-  skillCategory: {
-    width: '50%',
-    marginBottom: 10
-  },
-  skillCategoryTitle: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    marginBottom: 5
-  },
-  skillItem: {
+  skill: {
     fontSize: 10,
-    marginBottom: 3
+    backgroundColor: "#2a9d8f",
+    color: "#1a1a1a",
+    padding: "3px 8px",
+    borderRadius: 10,
   },
-  link: {
-    color: '#3498db',
-    textDecoration: 'none'
-  }
 });
 
 const Resume1 = ({ basics, education, projects, skills }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-        {/* Header Section */}
         <View style={styles.header}>
-          <Text style={styles.name}>{basics.name}</Text>
-          {basics.summary && (
-            <Text style={styles.title}>{basics.summary}</Text>
-          )}
-          <View style={styles.contactInfo}>
-            <Text style={styles.contactItem}>{basics.phone}</Text>
-            <Text style={styles.contactItem}>{basics.email}</Text>
-            <Text style={styles.contactItem}>{basics.location}</Text>
-          </View>
-          <View style={styles.contactInfo}>
-            {basics.github && (
-              <Text style={styles.contactItem}>
-                GitHub: <Text style={styles.link}>{basics.github}</Text>
-              </Text>
-            )}
-            {basics.linkedIn && (
-              <Text style={styles.contactItem}>
-                LinkedIn: <Text style={styles.link}>{basics.linkedIn}</Text>
-              </Text>
-            )}
+          <Text style={styles.name}>{basics.name || "Your Name"}</Text>
+          <View style={styles.contact}>
+            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/phone.png" style={styles.icon} />
+            <Text>{basics.phone || "Number"} | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/email.png" style={styles.icon} />
+            <Text>{basics.email || "Email"} | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" style={styles.icon} />
+            <Link href={basics.linkedIn} style={styles.link}>LinkedIn</Link>
+            <Text> | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" style={styles.icon} />
+            <Link href={basics.github} style={styles.link}>GitHub</Link>
+            <Text> | </Text>
+            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/marker.png" style={styles.icon} />
+            <Text>{basics.location || "Location"}</Text>
           </View>
         </View>
 
-        {/* Education Section */}
-        {education && education.length > 0 && (
-          <View style={styles.section}>
+        {basics?.summary?.trim() ? (
+          <View>
+            <Text style={styles.sectionTitle}>PROFESSIONAL SUMMARY</Text>
+            <Text style={styles.objectiveContent}>{basics.summary}</Text>
+          </View>
+        ) : (
+          <View>
+            <Text style={styles.sectionTitle}>PROFESSIONAL SUMMARY</Text>
+            <Text style={styles.objectiveContent}>
+              Your professional summary goes here. It should be a brief overview of your skills, experience, and career goals.
+            </Text>
+          </View>
+        )}
+
+        {education?.length > 0 && (
+          <View>
             <Text style={styles.sectionTitle}>EDUCATION</Text>
-            <View style={styles.sectionContent}>
-              {education.map((edu, index) => (
-                <View key={index} style={styles.educationItem}>
-                  <View style={styles.educationHeader}>
-                    <Text style={styles.institution}>{edu.institution}</Text>
-                    <Text style={styles.date}>
-                      {edu.startDate} - {edu.endDate || 'Present'}
-                    </Text>
-                  </View>
-                  <Text style={styles.degree}>{edu.studyType}</Text>
-                  {edu.gpa && (
-                    <Text style={styles.date}>GPA: {edu.gpa}</Text>
-                  )}
+            {education.map((edu, index) => (
+              <View key={index} style={styles.educationEntry}>
+                <View style={styles.educationHeader}>
+                  <Text style={styles.institution}>{edu.institution || "University Name"}</Text>
+                  <Text style={styles.date}>{edu.startDate || "Start Date"} — {edu.endDate || "Present"}</Text>
                 </View>
-              ))}
-            </View>
+                <Text style={styles.degree}>{edu.studyType || "Field of Study"}</Text>
+                <Text style={styles.gpa}>GPA: {edu.gpa || "8.66"}</Text>
+                <Text style={styles.location}>{edu.location || "Location"}</Text>
+              </View>
+            ))}
           </View>
         )}
 
-        {/* Projects Section */}
-        {projects && projects.length > 0 && (
-          <View style={styles.section}>
+        {projects?.length > 0 && (
+          <View>
             <Text style={styles.sectionTitle}>PROJECTS</Text>
-            <View style={styles.sectionContent}>
-              {projects.map((project, index) => (
-                <View key={index} style={styles.projectItem}>
-                  <View style={styles.projectHeader}>
-                    <Text style={styles.projectName}>{project.name}</Text>
-                    {project.year && (
-                      <Text style={styles.date}>{project.month} {project.year}</Text>
-                    )}
-                  </View>
-                  {project.technologies && (
-                    <Text style={styles.projectTech}>
-                      Technologies: {project.technologies}
-                    </Text>
-                  )}
-                  {project.link && (
-                    <Text style={styles.link}>{project.link}</Text>
-                  )}
-                  {project.description && (
-                    <Text style={styles.projectDesc}>{project.description}</Text>
-                  )}
+            {projects.map((project, index) => (
+              <View key={index} style={styles.projectEntry}>
+                <View style={styles.projectHeader}>
+                  <Text style={styles.projectTitle}>{project.title || "Project Title"}</Text>
+                  <Link href={project.link} style={styles.link}>
+                    <View style={styles.projectLink}>
+                      <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" style={styles.icon} />
+                      <Text>GitHub</Text>
+                    </View>
+                  </Link>
                 </View>
-              ))}
-            </View>
+                <Text style={styles.projectDescription}>{project.description || "Project Description"}</Text>
+              </View>
+            ))}
           </View>
         )}
 
-        {/* Skills Section */}
-        {skills && skills.length > 0 && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>SKILLS</Text>
-            <View style={styles.skillsContainer}>
-              {Object.entries(skills[0]).map(([category, skillList]) => (
-                <View key={category} style={styles.skillCategory}>
-                  <Text style={styles.skillCategoryTitle}>{category}</Text>
+        <View>
+          <Text style={styles.sectionTitle}>SKILLS</Text>
+          <View style={styles.skillsContainer}>
+            {skills.length > 0 && Object.entries(skills[0]).map(([category, skillList]) => (
+              <View key={category} style={styles.skillCategory}>
+                <Text style={styles.skillCategoryTitle}>{category}</Text>
+                <View style={styles.skillItems}>
                   {skillList.map((skill, index) => (
                     <Text key={index} style={styles.skillItem}>• {skill}</Text>
                   ))}
                 </View>
-              ))}
-            </View>
+              </View>
+            ))}
           </View>
-        )}
+        </View>
       </Page>
     </Document>
   );
