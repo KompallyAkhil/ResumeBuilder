@@ -8,6 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle, User, GraduationCap, Code, FileCode, XCircle } from 'lucide-react';
 import Resume1 from "./Templates/Resume1";
 import Resume2 from "./Templates/Resume2";
+import Resume3 from "./Templates/Resume3";
+import Resume4 from "./Templates/Resume4";
 const DynamicTemplate = () => {
     const { name } = useParams();
     const { resumeData, setResumeData, addSkill, newSkillCategory, setNewSkillCategory, newSkill, setNewSkill, handleCategoryChange, handleSkillChange, addEducation, addProject, removeProject, removeEducation, handleEducationChange, handleProjectChange, removeSkill } = useResumeInformation();
@@ -18,6 +20,12 @@ const DynamicTemplate = () => {
         }
         else if(templateName === "Minimalist") {
             return <Resume2/>
+        }
+        else if(templateName === "Creative"){
+            return <Resume3/>
+        }
+        else if(templateName === "Creative Plus"){
+            return <Resume4/>
         }
         else{
             return <Resume/>

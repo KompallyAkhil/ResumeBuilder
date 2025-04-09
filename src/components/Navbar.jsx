@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button"
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -23,10 +24,12 @@ const Navbar = () => {
           </div>
           <div className="md:flex-col items-center space-x-4">
             <SignedOut>
-              <SignInButton className="text-sm font-medium" />
+              <Button asChild>
+                <SignInButton className="text-sm font-medium" />
+              </Button>
             </SignedOut>
             <SignedIn>
-              <UserButton className="premium-button text-sm font-medium"/>
+              <UserButton className="premium-button text-sm font-medium" />
             </SignedIn>
           </div>
         </div>
