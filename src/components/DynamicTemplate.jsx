@@ -10,10 +10,11 @@ import Resume1 from "./Templates/Resume1";
 import Resume2 from "./Templates/Resume2";
 import Resume3 from "./Templates/Resume3";
 import Resume4 from "./Templates/Resume4";
+import { useAuth } from '@clerk/clerk-react';
 const DynamicTemplate = () => {
     const { name } = useParams();
     const { resumeData, setResumeData, addSkill, newSkillCategory, setNewSkillCategory, newSkill, setNewSkill, handleCategoryChange, handleSkillChange, addEducation, addProject, removeProject, removeEducation, handleEducationChange, handleProjectChange, removeSkill } = useResumeInformation();
-
+    const { isSignedIn } = useAuth();
     const getTemplate = (templateName) => {
         if(templateName === "Executive") {
             return <Resume1/>
@@ -142,14 +143,14 @@ const DynamicTemplate = () => {
                                             onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, summary: e.target.value } })}
                                         />
                                     </div>
-                                    <Button>
+                                    <Button disabled={!isSignedIn}>
                                         <PDFDownloadLink document={ React.cloneElement(SelectedTemplate,{
                                             basics: resumeData.basics,
                                             education : resumeData.education,
                                             projects : resumeData.projects,
                                             skills : resumeData.skills
                                         })} fileName={`${resumeData.basics.name}.pdf`}>
-                                            {({ loading }) => (loading ? 'Generating PDF...' : 'Download PDF')}
+                                            Download PDF
                                         </PDFDownloadLink>
 
                                     </Button>
