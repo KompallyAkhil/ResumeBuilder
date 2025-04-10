@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { PDFViewer } from '@react-pdf/renderer';
+import { PDFViewer , PDFDownloadLink  } from '@react-pdf/renderer';
 import React from "react";
 import { useResumeInformation } from './Context';
 import Resume from "./Templates/Resume";
@@ -142,12 +142,17 @@ const DynamicTemplate = () => {
                                             onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, summary: e.target.value } })}
                                         />
                                     </div>
-                                    {/* <Button>
-                                        <PDFDownloadLink document={<Resume basics={resumeData.basics} education={resumeData.education} projects={resumeData.projects} skills={resumeData.skills} />} fileName="example.pdf">
+                                    <Button>
+                                        <PDFDownloadLink document={ React.cloneElement(SelectedTemplate,{
+                                            basics: resumeData.basics,
+                                            education : resumeData.education,
+                                            projects : resumeData.projects,
+                                            skills : resumeData.skills
+                                        })} fileName={`${resumeData.basics.name}.pdf`}>
                                             {({ loading }) => (loading ? 'Generating PDF...' : 'Download PDF')}
                                         </PDFDownloadLink>
 
-                                    </Button> */}
+                                    </Button>
                                 </div>
                             </TabsContent>
                             <TabsContent value="education" className="mt-0">

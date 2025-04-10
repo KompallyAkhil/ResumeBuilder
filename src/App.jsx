@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from "./components/Hero";
 import Templates from './components/Templates';
 import Navbar from './components/Navbar';
-import SampleTemplate from './components/SampleTemplate';
+import SampleTemplate from './components/Templates/SampleTemplate';
 import {Routes, Route } from 'react-router-dom';
 import DynamicTemplate from './components/DynamicTemplate';
 const App = () => {

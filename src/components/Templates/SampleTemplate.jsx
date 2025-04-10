@@ -1,12 +1,14 @@
-import Resume from './Templates/Resume';
+import Resume from './Resume';
 import { PDFViewer } from '@react-pdf/renderer';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle, User, GraduationCap, Code, FileCode, XCircle } from 'lucide-react';
-import { useResumeInformation } from './Context';
+import { useResumeInformation } from '../Context';
+import { useAuth } from '@clerk/clerk-react';
 const SampleTemplate = () => {
   const {resumeData, setResumeData, addSkill, newSkillCategory, setNewSkillCategory, newSkill, setNewSkill, handleCategoryChange, handleSkillChange, addEducation, addProject, removeProject, removeEducation, handleEducationChange, handleProjectChange, removeSkill} = useResumeInformation();
+  const { isSignedIn } = useAuth();
   return (
     <>
       <div className='pt-20 flex h-screen'>
@@ -116,7 +118,7 @@ const SampleTemplate = () => {
                       onChange={(e) => setResumeData({ ...resumeData, basics: { ...resumeData.basics, summary: e.target.value } })}
                     />
                   </div>
-                  <Button>
+                  <Button disabled={!isSignedIn} onClick={()=> console.log('Please SignIn')}>
                     <PDFDownloadLink document={<Resume basics={resumeData.basics} education={resumeData.education} projects={resumeData.projects} skills={resumeData.skills}/>} fileName="example.pdf">
                       {({ loading }) => (loading ? 'Generating PDF...' : 'Download PDF')}
                     </PDFDownloadLink>
