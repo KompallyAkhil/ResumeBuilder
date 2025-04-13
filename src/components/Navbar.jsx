@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import Login from './Login';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {

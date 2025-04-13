@@ -151,22 +151,24 @@ const styles = StyleSheet.create({
     color: "#34495e",
     marginTop:5,
   },
-  skillsContainer: {
-    display:"flex",
-    flexDirection:"column",
-    gap:2
+  skillRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 5,
   },
-  
   skillCategoryTitle: {
     fontSize: 12,
     fontWeight: "bold",
+    color: "#2c3e50",
+  },
+  separator: {
+    fontWeight: 'normal',
     
   },
-  skillItem: {
-    fontSize: 14,
-    color: '#333',
-    paddingVertical: 2,
+  skillText: {
+    fontSize: 12,
+    color: "#34495e",
+    marginLeft:4
   },
-});
-
+})
 export default styles;

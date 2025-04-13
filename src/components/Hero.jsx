@@ -26,7 +26,6 @@ const Hero = () => {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
-              
               <Button asChild variant="outline" className="px-8 py-6 text-base">
                 <Link to="/templates">Explore Templates</Link>
               </Button>

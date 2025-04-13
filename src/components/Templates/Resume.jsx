@@ -92,23 +92,17 @@ const Resume = ({ basics, education, projects, skills }) => {
         )}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>SKILLS</Text>
-          <View style={styles.skillsContainer}>
-            {skills.length > 0 && Object.entries(skills[0]).map(([category, skillList]) => (
-              <View key={category} style={styles.skillCategory}>
-                <View style={{ display: "flex" }}>
-                  <Text style={styles.skillCategoryTitle}>{category}</Text>
-                  {skillList.map((skill, index) => (
-                    <View style={{ display: "flex" }}>
-                      <Text key={index} style={styles.skillItem}>
-                        {skill}
-                      </Text>
-                    </View>
-                  ))}
-                </View>
+          {skills.length > 0 &&
+            Object.entries(skills[0]).map(([category, skillList]) => (
+              <View key={category} style={styles.skillRow}>
+                <Text style={styles.skillCategoryTitle}>
+                  {category} <Text style={styles.separator}>:</Text>
+                </Text>
+                <Text style={styles.skillText}>{skillList.join(', ')}</Text>
               </View>
             ))}
-          </View>
         </View>
+
 
       </Page>
     </Document>
