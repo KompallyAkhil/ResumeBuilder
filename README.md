@@ -27,7 +27,6 @@ Check out the live demo of CodeConnect:  [ResumeBuilder Live](https://resume-bui
    cd frontend
    npm run dev
 
-
 Stay Connected 🌐
  - Project Updates: Follow our journey on GitHub for regular updates and improvements.
  - Need Help?: If you have any questions or encounter issues, feel free to open a GitHub issue or contact us directly.
