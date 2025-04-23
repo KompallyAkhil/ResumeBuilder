@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
+import { UserButton, useClerk, useUser } from '@clerk/clerk-react'
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import Login from './Login';
+
 const Navbar = () => {
+  const { openSignIn } = useClerk();
+  const { user } = useUser();
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
@@ -24,14 +26,13 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="md:flex-col items-center space-x-4">
-            <SignedOut>
-              <Button asChild>
-                <SignInButton className="text-sm font-medium" />
-              </Button>
-            </SignedOut>
-            <SignedIn>
-              <UserButton className="premium-button text-sm font-medium" />
-            </SignedIn>
+            {user ? <UserButton /> : <Button
+              onClick={() => openSignIn({ appearance: { layout: { socialButtonsVariant: 'iconButton' } } })}
+              className="text-sm font-medium"
+            >
+              Sign In
+            </Button>
+            }
           </div>
         </div>
       </div>

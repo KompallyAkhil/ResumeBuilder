@@ -7,6 +7,8 @@ import { PlusCircle, User, GraduationCap, Code, FileCode, XCircle } from 'lucide
 import { useResumeInformation } from '../Context';
 const SampleTemplate = () => {
   const {resumeData, setResumeData, addSkill, newSkillCategory, setNewSkillCategory, newSkill, setNewSkill, handleCategoryChange, handleSkillChange, addEducation, addProject, removeProject, removeEducation, handleEducationChange, handleProjectChange, removeSkill} = useResumeInformation();
+
+
   return (
     <>
       <div className='pt-20 flex h-screen'>
@@ -231,6 +233,7 @@ const SampleTemplate = () => {
                         value={newSkill}
                         onChange={handleSkillChange}
                         className="form-input"
+                        onKeyDown={(e) => e.key === 'Enter' ? addSkill() : null}
                       />
                       <Button size="l" onClick={addSkill}>Add Skill</Button>
                     </div>
