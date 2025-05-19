@@ -1,85 +1,115 @@
 import React from "react";
-import { Document, Page, Text, View, StyleSheet, Image , Link} from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
-// Create styles
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
-    backgroundColor: "#1a1a1a",
-    color: "#e0e0e0",
+    padding: 30,
     fontFamily: "Helvetica",
+    fontSize: 11,
+    lineHeight: 1.4,
   },
   header: {
-    marginBottom: 20,
-    borderBottom: "1px solid #2a9d8f",
+    marginBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: "#000000",
     paddingBottom: 10,
   },
   name: {
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: "bold",
-    color: "#ffffff",
     marginBottom: 5,
   },
-  contact: {
-    fontSize: 10,
+  contactRow: {
     flexDirection: "row",
-    gap: 8,
-  },
-  link: {
-    color: "#2a9d8f",
-    textDecoration: "none",
+    justifyContent: "space-between",
+    marginBottom: 3,
   },
   section: {
-    marginBottom: 15,
-  },
-  sectionTitle: {
-    fontSize: 14,
-    fontWeight: "bold",
-    color: "#2a9d8f",
-    marginBottom: 8,
-    letterSpacing: 1,
-  },
-  summaryText: {
-    fontSize: 11,
-    lineHeight: 1.5,
-  },
-  educationItem: {
-    marginBottom: 10,
-  },
-  institution: {
-    fontSize: 12,
-    fontWeight: "bold",
-  },
-  degree: {
-    fontSize: 10,
-    color: "#b3b3b3",
-  },
-  date: {
-    fontSize: 9,
-    color: "#7f7f7f",
-  },
-  projectItem: {
     marginBottom: 12,
   },
-  projectTitle: {
-    fontSize: 12,
+  sectionTitle: {
+    fontSize: 13,
     fontWeight: "bold",
+    marginBottom: 8,
+    borderBottomWidth: 1,
+    borderBottomColor: "#000000",
+    paddingBottom: 3,
   },
-  projectDesc: {
-    fontSize: 10,
-    marginVertical: 4,
+  educationTable: {
+    width: "100%",
+    marginBottom: 10,
   },
-  skillsContainer: {
+  tableRow: {
+    flexDirection: "row",
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#cccccc",
+    paddingVertical: 5,
+  },
+  tableHeader: {
+    flexDirection: "row",
+    fontWeight: "bold",
+    borderBottomWidth: 1,
+    borderBottomColor: "#000000",
+    paddingBottom: 5,
+    marginBottom: 5,
+  },
+  colDegree: {
+    width: "25%",
+  },
+  colInstitute: {
+    width: "45%",
+  },
+  colGrade: {
+    width: "15%",
+    textAlign: "right",
+  },
+  colYear: {
+    width: "15%",
+    textAlign: "right",
+  },
+  projectItem: {
+    marginBottom: 10,
+  },
+  projectTitle: {
+    fontWeight: "bold",
+    marginBottom: 3,
+  },
+  projectSubtitle: {
+    fontStyle: "italic",
+    marginBottom: 3,
+  },
+  projectDescription: {
+    marginBottom: 5,
+  },
+  projectTech: {
+    fontStyle: "italic",
+  },
+  skillsCategory: {
+    marginBottom: 8,
+  },
+  skillsTitle: {
+    fontWeight: "bold",
+    marginBottom: 3,
+  },
+  skillsList: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: 8,
   },
-  skill: {
-    fontSize: 10,
-    backgroundColor: "#2a9d8f",
-    color: "#1a1a1a",
-    padding: "3px 8px",
-    borderRadius: 10,
+  skillItem: {
+    marginRight: 10,
+    marginBottom: 3,
+  },
+  positionItem: {
+    marginBottom: 8,
+  },
+  positionTitle: {
+    fontWeight: "bold",
+  },
+  positionDuration: {
+    fontStyle: "italic",
+  },
+  achievementItem: {
+    marginBottom: 5,
   },
 });
 
@@ -87,90 +117,79 @@ const Resume1 = ({ basics, education, projects, skills }) => {
   return (
     <Document>
       <Page size="A4" style={styles.page}>
+        {/* Header Section */}
         <View style={styles.header}>
-          <Text style={styles.name}>{basics.name || "Your Name"}</Text>
-          <View style={styles.contact}>
-            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/phone.png" style={styles.icon} />
-            <Text>{basics.phone || "Number"} | </Text>
-            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/email.png" style={styles.icon} />
-            <Text>{basics.email || "Email"} | </Text>
-            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/linkedin.png" style={styles.icon} />
-            <Link href={basics.linkedIn} style={styles.link}>LinkedIn</Link>
-            <Text> | </Text>
-            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" style={styles.icon} />
-            <Link href={basics.github} style={styles.link}>GitHub</Link>
-            <Text> | </Text>
-            <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/marker.png" style={styles.icon} />
-            <Text>{basics.location || "Location"}</Text>
+          <Text style={styles.name}>{basics?.name || "Your Name"}</Text>
+          <View style={styles.contactRow}>
+            <Text>{basics?.degree || "Degree - (Year)"}</Text>
+            <Text>{basics?.phone || "Phone Number"}</Text>
+          </View>
+          <View style={styles.contactRow}>
+            <Text>{basics?.major || "Field of Study"}</Text>
+            <Text>{basics?.email || "your.email@example.com"}</Text>
+          </View>
+          <View style={styles.contactRow}>
+            <Text>{basics?.institute || "Your Institute"}</Text>
+            <Text>{basics?.linkedin || "linkedin.com/in/yourprofile"}</Text>
           </View>
         </View>
 
-        {basics?.summary?.trim() ? (
-          <View>
-            <Text style={styles.sectionTitle}>PROFESSIONAL SUMMARY</Text>
-            <Text style={styles.objectiveContent}>{basics.summary}</Text>
-          </View>
-        ) : (
-          <View>
-            <Text style={styles.sectionTitle}>PROFESSIONAL SUMMARY</Text>
-            <Text style={styles.objectiveContent}>
-              Your professional summary goes here. It should be a brief overview of your skills, experience, and career goals.
-            </Text>
-          </View>
-        )}
-
-        {education?.length > 0 && (
-          <View>
-            <Text style={styles.sectionTitle}>EDUCATION</Text>
-            {education.map((edu, index) => (
-              <View key={index} style={styles.educationEntry}>
-                <View style={styles.educationHeader}>
-                  <Text style={styles.institution}>{edu.institution || "University Name"}</Text>
-                  <Text style={styles.date}>{edu.startDate || "Start Date"} — {edu.endDate || "Present"}</Text>
-                </View>
-                <Text style={styles.degree}>{edu.studyType || "Field of Study"}</Text>
-                <Text style={styles.gpa}>GPA: {edu.gpa || "8.66"}</Text>
-                <Text style={styles.location}>{edu.location || "Location"}</Text>
+        {/* Education Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>EDUCATION</Text>
+          <View style={styles.educationTable}>
+            <View style={styles.tableHeader}>
+              <Text style={styles.colDegree}>Degree/Certificate</Text>
+              <Text style={styles.colInstitute}>Institute/Board</Text>
+              <Text style={styles.colGrade}>CGPA/Percentage</Text>
+              <Text style={styles.colYear}>Year</Text>
+            </View>
+            {education?.map((edu, index) => (
+              <View key={index} style={styles.tableRow}>
+                <Text style={styles.colDegree}>{edu?.degree || "Degree"}</Text>
+                <Text style={styles.colInstitute}>{edu?.institute || "Institute"}</Text>
+                <Text style={styles.colGrade}>{edu?.grade || "Grade"}</Text>
+                <Text style={styles.colYear}>{edu?.year || "Year"}</Text>
               </View>
             ))}
           </View>
-        )}
+        </View>
 
+        {/* Projects Section */}
         {projects?.length > 0 && (
-          <View>
+          <View style={styles.section}>
             <Text style={styles.sectionTitle}>PROJECTS</Text>
             {projects.map((project, index) => (
-              <View key={index} style={styles.projectEntry}>
-                <View style={styles.projectHeader}>
-                  <Text style={styles.projectTitle}>{project.title || "Project Title"}</Text>
-                  <Link href={project.link} style={styles.link}>
-                    <View style={styles.projectLink}>
-                      <Image src="https://img.icons8.com/ios-filled/50/FFFFFF/github.png" style={styles.icon} />
-                      <Text>GitHub</Text>
-                    </View>
-                  </Link>
-                </View>
-                <Text style={styles.projectDescription}>{project.description || "Project Description"}</Text>
+              <View key={index} style={styles.projectItem}>
+                <Text style={styles.projectTitle}>• {project?.title || "Project Title"}</Text>
+                {project?.type && <Text style={styles.projectSubtitle}>• {project.type}</Text>}
+                <Text style={styles.projectDescription}>• {project?.description || "Project description"}</Text>
+                {project?.technologies && (
+                  <Text style={styles.projectTech}>• Made using: {project.technologies}</Text>
+                )}
               </View>
             ))}
           </View>
         )}
 
-        <View>
-          <Text style={styles.sectionTitle}>SKILLS</Text>
-          <View style={styles.skillsContainer}>
-            {skills.length > 0 && Object.entries(skills[0]).map(([category, skillList]) => (
-              <View key={category} style={styles.skillCategory}>
-                <Text style={styles.skillCategoryTitle}>{category}</Text>
-                <View style={styles.skillItems}>
-                  {skillList.map((skill, index) => (
-                    <Text key={index} style={styles.skillItem}>• {skill}</Text>
+        {/* Technical Skills */}
+        {skills && Object.keys(skills).length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>TECHNICAL SKILLS</Text>
+            {Object.entries(skills[0]).map(([category, items], index) => (
+              <View key={index} style={styles.skillsCategory}>
+                <Text style={styles.skillsTitle}>• {category}:</Text>
+                <View style={styles.skillsList}>
+                  {items?.map((skill, i) => (
+                    <Text key={i} style={styles.skillItem}>
+                      {skill}{i < items.length - 1 ? "," : ""}
+                    </Text>
                   ))}
                 </View>
               </View>
             ))}
           </View>
-        </View>
+        )}
       </Page>
     </Document>
   );

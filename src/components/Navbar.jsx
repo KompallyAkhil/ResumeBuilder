@@ -27,7 +27,7 @@ const Navbar = () => {
           </div>
           <div className="md:flex-col items-center space-x-4">
             {user ? <UserButton /> : <Button
-              onClick={() => openSignIn({ appearance: { layout: { socialButtonsVariant: 'iconButton' } } })}
+              onClick={() => openSignIn()}
               className="text-sm font-medium"
             >
               Sign In
