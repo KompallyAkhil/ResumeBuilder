@@ -1,4 +1,3 @@
-import React from "react";
 import { Document, Link, Page, Text, View, Image } from "@react-pdf/renderer";
 import styles from "./styles";
 

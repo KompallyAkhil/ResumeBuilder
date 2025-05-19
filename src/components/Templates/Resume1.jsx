@@ -1,115 +1,257 @@
-import React from "react";
-import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
 
-const styles = StyleSheet.create({
+import { Document, Page, Text, View, StyleSheet, Font } from "@react-pdf/renderer";
+export const styles = StyleSheet.create({
   page: {
-    padding: 30,
+    padding: 35,
     fontFamily: "Helvetica",
-    fontSize: 11,
-    lineHeight: 1.4,
+    // backgroundColor: "#ffffff",
   },
   header: {
-    marginBottom: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: "#000000",
-    paddingBottom: 10,
+    marginBottom: 16,
   },
   name: {
-    fontSize: 16,
+    fontSize: 26,
+    textAlign: "center",
+    // color: "#1a365d",
+    letterSpacing: 1.2,
     fontWeight: "bold",
-    marginBottom: 5,
   },
-  contactRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 3,
-  },
-  section: {
-    marginBottom: 12,
-  },
-  sectionTitle: {
-    fontSize: 13,
-    fontWeight: "bold",
-    marginBottom: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: "#000000",
-    paddingBottom: 3,
-  },
-  educationTable: {
-    width: "100%",
-    marginBottom: 10,
-  },
-  tableRow: {
-    flexDirection: "row",
-    borderBottomWidth: 0.5,
-    borderBottomColor: "#cccccc",
-    paddingVertical: 5,
-  },
-  tableHeader: {
-    flexDirection: "row",
-    fontWeight: "bold",
-    borderBottomWidth: 1,
-    borderBottomColor: "#000000",
-    paddingBottom: 5,
-    marginBottom: 5,
-  },
-  colDegree: {
-    width: "25%",
-  },
-  colInstitute: {
-    width: "45%",
-  },
-  colGrade: {
-    width: "15%",
-    textAlign: "right",
-  },
-  colYear: {
-    width: "15%",
-    textAlign: "right",
-  },
-  projectItem: {
-    marginBottom: 10,
-  },
-  projectTitle: {
-    fontWeight: "bold",
-    marginBottom: 3,
-  },
-  projectSubtitle: {
-    fontStyle: "italic",
-    marginBottom: 3,
-  },
-  projectDescription: {
-    marginBottom: 5,
-  },
-  projectTech: {
-    fontStyle: "italic",
-  },
-  skillsCategory: {
-    marginBottom: 8,
-  },
-  skillsTitle: {
-    fontWeight: "bold",
-    marginBottom: 3,
-  },
-  skillsList: {
+  contact: {
+    display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "center",
+    fontSize: 10,
+    color: "#4a5568",
+    marginTop: 8,
+    lineHeight: 1.5,
   },
-  skillItem: {
-    marginRight: 10,
-    marginBottom: 3,
+  icon: {
+    width: 10,
+    height: 10,
+    marginRight: 3,
   },
-  positionItem: {
-    marginBottom: 8,
+  link: {
+    fontSize: 10,
+    // color: "#2b6cb0",
+    textDecoration: "none",
   },
-  positionTitle: {
+  sectionTitle: {
+    fontSize: 14,
     fontWeight: "bold",
+    marginTop: 16,
+    marginBottom: 10,
+    textTransform: "uppercase",
+    // color: "#1a365d",
+    borderLeftWidth: 4,
+    // borderLeftColor: "#4299e1",
+    paddingLeft: 8,
+    letterSpacing: 0.6,
   },
-  positionDuration: {
+  objectiveContent: {
+    fontSize: 11,
+    lineHeight: 1.6,
+    // color: "#2d3748",
+    textAlign: "justify",
+    paddingHorizontal: 2,
+  },
+  educationEntry: {
+    marginBottom: 10,
+    paddingBottom: 10,
+    borderBottomWidth: 0.5,
+    // borderBottomColor: "#e2e8f0",
+  },
+  educationHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  institution: {
+    fontSize: 12,
+    fontWeight: "bold",
+    // color: "#2d3748",
+  },
+  date: {
+    fontSize: 10,
+    // color: "#718096",
     fontStyle: "italic",
   },
-  achievementItem: {
-    marginBottom: 5,
+  educationDetails: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    marginBottom: 4,
+  },
+  degree: {
+    fontSize: 11,
+    // color: "#4a5568",
+  },
+  gpa: {
+    fontSize: 10,
+    fontWeight: "bold",
+    // color: "#4a5568",
+  },
+  gpaLabel: {
+    fontWeight: "normal",
+    // color: "#718096",
+  },
+  location: {
+    fontSize: 10,
+    // color: "#718096",
+  },
+  projectEntry: {
+    marginBottom: 12,
+    paddingBottom: 8,
+    borderBottomWidth: 0.5,
+    // borderBottomColor: "#e2e8f0",
+  },
+  projectHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 4,
+  },
+  projectHeading: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 8,
+    alignItems: "center",
+  },
+  projectTitle: {
+    fontSize: 12,
+    fontWeight: "bold",
+    // color: "#2d3748",
+  },
+  projectLink: {
+    fontSize: 10,
+    // color: "#2b6cb0",
+  },
+  projectDate: {
+    fontSize: 10,
+    // color: "#718096",
+    fontWeight: "medium",
+  },
+  projectDescription: {
+    fontSize: 11,
+    // color: "#4a5568",
+    lineHeight: 1.5,
+    marginTop: 4,
+  },
+  skillRow: {
+    flexDirection: "row",
+    marginBottom: 6,
+    alignItems: "center",
+  },
+contactRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  fontSize: 10,
+  // color: "#4a5568",
+  marginVertical: 2,
+},
+
+section: {
+  marginTop: 16,
+},
+
+educationTable: {
+  marginTop: 8,
+},
+
+tableHeader: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  borderBottomWidth: 1,
+  // borderBottomColor: "#cbd5e0",
+  paddingBottom: 4,
+  marginBottom: 4,
+},
+
+tableRow: {
+  flexDirection: "row",
+  justifyContent: "space-between",
+  paddingVertical: 2,
+},
+
+colDegree: {
+  fontSize: 10,
+  // width: "30%",
+  color: "#2d3748",
+},
+
+colInstitute: {
+  fontSize: 10,
+  width: "30%",
+  // color: "#2d3748",
+},
+
+colGrade: {
+  fontSize: 10,
+  width: "20%",
+  // color: "#2d3748",
+},
+
+colYear: {
+  fontSize: 10,
+  width: "15%",
+  // color: "#2d3748",
+},
+
+projectItem: {
+  marginBottom: 8,
+},
+
+projectSubtitle: {
+  fontSize: 10,
+  // color: "#4a5568",
+  marginTop: 2,
+},
+
+projectTech: {
+  fontSize: 10,
+  // color: "#4a5568",
+  marginTop: 2,
+},
+
+skillsCategory: {
+  marginBottom: 6,
+},
+
+skillsTitle: {
+  fontSize: 11,
+  fontWeight: "bold",
+  // color: "#2d3748",
+  marginBottom: 2,
+},
+
+skillsList: {
+  flexDirection: "row",
+  flexWrap: "wrap",
+  paddingLeft: 8,
+},
+
+skillItem: {
+  fontSize: 10,
+  // color: "#4a5568",
+  marginRight: 4,
+},
+
+  skillCategoryTitle: {
+    fontSize: 11,
+    fontWeight: "bold",
+    // color: "#2d3748",
+    width: "22%",
+  },
+  separator: {
+    fontWeight: "normal",
+    // color: "#4a5568",
+  },
+  skillText: {
+    fontSize: 11,
+    // color: "#4a5568",
+    marginLeft: 4,
+    width: "78%",
   },
 });
 
@@ -131,6 +273,7 @@ const Resume1 = ({ basics, education, projects, skills }) => {
           <View style={styles.contactRow}>
             <Text>{basics?.institute || "Your Institute"}</Text>
             <Text>{basics?.linkedin || "linkedin.com/in/yourprofile"}</Text>
+            <Text>{basics?.github || "github.com/yourprofile"}</Text>
           </View>
         </View>
 
@@ -146,10 +289,10 @@ const Resume1 = ({ basics, education, projects, skills }) => {
             </View>
             {education?.map((edu, index) => (
               <View key={index} style={styles.tableRow}>
-                <Text style={styles.colDegree}>{edu?.degree || "Degree"}</Text>
-                <Text style={styles.colInstitute}>{edu?.institute || "Institute"}</Text>
-                <Text style={styles.colGrade}>{edu?.grade || "Grade"}</Text>
-                <Text style={styles.colYear}>{edu?.year || "Year"}</Text>
+                <Text style={styles.colDegree}>{edu?.studyType || "Degree"}</Text>
+                <Text style={styles.colInstitute}>{edu?.institution || "Institute"}</Text>
+                <Text style={styles.colGrade}>{edu?.gpa || "Grade"}</Text>
+                <Text style={styles.colYear}>{edu?.startDate} - {edu?.endDate || "Year"}</Text>
               </View>
             ))}
           </View>
