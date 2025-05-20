@@ -1,5 +1,5 @@
 import { Document, Link, Page, Text, View, Image } from "@react-pdf/renderer";
-import styles from "./styles";
+import styles from "../styles"
 
 const Resume = ({ basics, education, projects, skills }) => {
   return (

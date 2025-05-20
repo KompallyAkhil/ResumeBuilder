@@ -2,14 +2,14 @@ import { useParams } from "react-router-dom";
 import { PDFViewer , PDFDownloadLink  } from '@react-pdf/renderer';
 import React from "react";
 import { useResumeInformation } from './Context';
-import Resume from "./Templates/Resume";
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PlusCircle, User, GraduationCap, Code, FileCode, XCircle } from 'lucide-react';
-import Resume1 from "./Templates/Resume1";
-import Resume2 from "./Templates/Resume2";
-import Resume3 from "./Templates/Resume3";
-import Resume4 from "./Templates/Resume4";
+import Resume from "./Templates/Resumes/Resume";
+import Resume1 from "./Templates/Resumes/Resume1";
+import Resume2 from "./Templates/Resumes/Resume2"
+import Resume3 from "./Templates/Resumes/Resume3"
+import Resume4 from "./Templates/Resumes/Resume4";
 import { useAuth } from '@clerk/clerk-react';
 const DynamicTemplate = () => {
     const { name } = useParams();
