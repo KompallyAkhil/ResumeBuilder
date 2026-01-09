@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     // backgroundColor: "#ffffff",
   },
   header: {
-    marginBottom: 16,
+    marginBottom: 0,
   },
   name: {
     fontSize: 26,
@@ -152,7 +152,7 @@ contactRow: {
 },
 
 section: {
-  marginTop: 16,
+  marginTop: 5,
 },
 
 educationTable: {
@@ -263,17 +263,15 @@ const Resume1 = ({ basics, education, projects, skills }) => {
         <View style={styles.header}>
           <Text style={styles.name}>{basics?.name || "Your Name"}</Text>
           <View style={styles.contactRow}>
-            <Text>{basics?.degree || "Degree - (Year)"}</Text>
             <Text>{basics?.phone || "Phone Number"}</Text>
           </View>
           <View style={styles.contactRow}>
-            <Text>{basics?.major || "Field of Study"}</Text>
             <Text>{basics?.email || "your.email@example.com"}</Text>
+            <Text>{basics?.github || "github.com/yourprofile"}</Text>
           </View>
           <View style={styles.contactRow}>
-            <Text>{basics?.institute || "Your Institute"}</Text>
-            <Text>{basics?.linkedin || "linkedin.com/in/yourprofile"}</Text>
-            <Text>{basics?.github || "github.com/yourprofile"}</Text>
+            <Text>{basics?.linkedIn || "linkedIn.com/yourprofile"}</Text>
+            <Text>{basics?.location || "Hyderabad"}</Text>
           </View>
         </View>
 
